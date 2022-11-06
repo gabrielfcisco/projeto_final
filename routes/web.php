@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\SecretariaController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,3 +17,14 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+<<<<<<< Updated upstream
+=======
+
+Route::get('/loginProfessor', function () {
+    return view('loginProfessor');
+});
+
+Route::resource('secretaria',SecretariaController::class);
+Route::get('/',[SecretariaController::class,'login'])->name('login');
+Route::post('/auth',[SecretariaController::class,'auth'])->name('auth.secretaria');
+>>>>>>> Stashed changes
