@@ -12,8 +12,13 @@ class SecretariaController extends Controller
         return view('secretaria.auth');
     }
 
+    public function show()
+    {
+        return view('secretaria.index');
+    }
+
     public function login()
     {
-        return view('secretaria.login');
+        return view('secretaria.login', compact('login'));
     }
 }

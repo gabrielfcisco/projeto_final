@@ -10,8 +10,8 @@
         <h3>Login</h3>
         <form method="POST">
             @csrf
-            <label for="RP">RP</label>
-            <input type="text" name="RP" id="RP" placeholder="RP">
+            <label for="Login">Login</label>
+            <input type="text" name="Login" id="Login" placeholder="Login">
             <br>
             <label for="Senha">Senha</label>
             <input type="text" name="Senha" id="Senha" placeholder="Senha">
