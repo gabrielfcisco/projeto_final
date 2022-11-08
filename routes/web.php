@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ProfessorController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,6 +18,4 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/loginProfessor', function () {
-    return view('loginProfessor');
-});
+Route::get('/loginProfessor', [ProfessorController::class, 'login']);
