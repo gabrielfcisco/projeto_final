@@ -10,13 +10,18 @@ class UserController extends Controller
 {
     public function index()
     {   
-        if (Auth::check())
-        {
-            dd("Autenticado");
-        }else{
+        if (Auth::check()){
 
-        return view('login');
+            
+            if(Auth::viaRemember())
+            {
+                dd("Autenticado");
+            }else{
+
+            return redirect('logout');
+            }
         }
+        return view('login');
     }
 
     public function auth(Request $request)
@@ -34,8 +39,14 @@ class UserController extends Controller
         }
     }
 
-    public function logout(){
+    public function logout(Request $request)
+    {
         Auth::logout();
+
+        $request->session()->invalidate();
+
+        $request->session()->regenerateToken();
+
         return redirect('login');
     }
 
