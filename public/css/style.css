@@ -1,0 +1,230 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;1,700&family=Roboto:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap');
+
+body {
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+}
+
+body * {
+    box-sizing: border-box;
+}
+
+.main-login {
+    width: 100vw;
+    height: 100vh;
+    background-color: #ffffff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.left-login {
+    width: 50vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.left-login>h1 {
+    align-items: center;
+    justify-content: center;
+    font-size: 3vw;
+    color: #044bc3;
+
+}
+
+.left-login-img {
+    width: 30vw;
+}
+
+.right-login {
+    width: 50vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.card-login {
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 30px 35px;
+    background: #044bc3;
+    border-radius: 20px;
+    box-shadow: 0px 10px 40px #00000056;
+}
+
+.card-login>h3 {
+    color: #ffff;
+    font-size: 32px;
+    font-weight: 500;
+    line-height: 42px;
+}
+
+.sec-card-login {
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 30px 35px;
+    background: #519665;
+    border-radius: 20px;
+    box-shadow: 0px 10px 40px #00000056;
+}
+
+.sec-card-login>h3 {
+    color: #ffffff;
+    font-size: 32px;
+    font-weight: 500;
+    line-height: 42px;
+}
+
+.textfield {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    margin: 10px 0px;
+}
+
+.textfield .check{
+    display: none;
+    color:#fff;
+	border-color:#1161ee;
+}
+
+.textfield .sec-check{
+    display: none;
+    color:#fff;
+	border-color:#BDFFCF;
+}
+
+.textfield label .icon{
+	width:15px;
+	height:15px;
+	border-radius:2px;
+	position:relative;
+	display:inline-block;
+	background:rgba(255,255,255,.1);
+}
+.textfield label .icon:before,
+.textfield label .icon:after{
+	content:'';
+	width:10px;
+	height:2px;
+	background:#fff;
+	position:absolute;
+	transition:all .2s ease-in-out 0s;
+}
+.textfield label .icon:before{
+	left:3px;
+	width:5px;
+	bottom:6px;
+	transform:scale(0) rotate(0);
+}
+.textfield label .icon:after{
+	top:6px;
+	right:0;
+	transform:scale(0) rotate(0);
+}
+.textfield .check:checked + label{
+	color:#fff;
+}
+.textfield .check:checked + label .icon{
+	background:#1161ee;
+}
+.textfield .sec-check:checked + label .icon{
+	background:#BDFFCF!important;
+}
+.textfield .check:checked + label .icon:before{
+	transform:scale(1) rotate(45deg);
+}
+.textfield .check:checked + label .icon:after{
+	transform:scale(1) rotate(-45deg);
+}
+
+.textfield>input {
+    width: 100%;
+    border: none;
+    border-radius: 10px;
+    padding: 15px;
+    background: #78a0e4;
+    color: #f0ffffde;
+    font-size: 12pt;
+    box-shadow: 0px 10px 40px #00000056;
+    outline: 0;
+    box-sizing: border-box;
+}
+
+.textfield>label {
+    color: #ffffff;
+    margin-bottom: 10px;
+}
+
+.textfield>input::placeholder {
+    font-family: 'Poppins', sans-serif;
+    color: #f0ffff94;
+}
+
+.btn-login {
+    font-family: 'Poppins', sans-serif;
+    width: 100%;
+    padding: 16px 0px;
+    margin: 25px 0px;
+    border: none;
+    border-radius: 8px;
+    outline: none;
+    font-size: 18px;
+    font-weight: 600;
+    color: #044bc3;
+    background: #ffff;
+    cursor: pointer;
+    box-shadow: 0px 10px 40px -12px #b1f3f952;
+
+}
+
+.btn-login:hover {
+    background-color: #dbe5f8;
+}
+
+@media only screen and (max-width: 950px) {
+    .card-login {
+        width: 85%;
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    .main-login {
+        flex-direction: column;
+    }
+
+    .left-login>h1 {
+        display: none;
+    }
+
+    .left-login {
+        width: 100%;
+        height: auto;
+    }
+
+    .right-login {
+        width: 100%;
+        height: auto;
+    }
+
+    .left-login-img {
+        width: 65vw;
+    }
+
+    .card-login {
+        width: 90%;
+    }
+}
