@@ -16,3 +16,5 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+Route::get('/change-password', [App\Http\Controllers\UserController::class, 'changePassword'])->name('change-password');
+Route::post('/change-password', [App\Http\Controllers\UserController::class, 'updatePassword'])->name('update-password');
