@@ -19,6 +19,6 @@ class SecretariaController extends Controller
 
     public function login()
     {
-        return view('secretaria.login', compact('login'));
+        return view('secretaria.login');
     }
 }

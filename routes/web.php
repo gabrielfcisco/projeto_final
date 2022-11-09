@@ -18,9 +18,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::resource('secretaria',SecretariaController::class);
-
+//Route::resource('secretaria',SecretariaController::class);
 Route::get('/secretaria/login', [SecretariaController::class,'login'])->name('secretaria.login');
-//Route::view('/secretaria/login','secretaria.login');
+Route::get('/teste/login', function(){
+    return view('secretaria.login');
+});
 
 Route::post('/secretaria/auth',[SecretariaController::class,'auth'])->name('secretaria.auth');

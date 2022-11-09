@@ -12,7 +12,7 @@
 </head>
 <body>
 	<div class="container p-3 bg-light">
-		@yield('content')
+		<h1>Index</h1>
 	</div>
 </body>
 </html>
