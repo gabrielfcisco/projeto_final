@@ -44,7 +44,7 @@
 </head>
 <body>
     <div>
-        <h1>Login</h1>
+        <h1>Login do Aluno</h1>
         <input type="text" placeholder="RA">
         <br><br>
         <input type="password" placeholder="Senha">
