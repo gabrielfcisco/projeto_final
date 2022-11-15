@@ -7,6 +7,6 @@ use Illuminate\Http\Request;
 class AlunoController extends Controller
 {
     public function login(){
-        return view('alunos.login_aluno');
+        return view('alunos.login');
     }
 }

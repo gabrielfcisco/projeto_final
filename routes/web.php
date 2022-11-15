@@ -18,4 +18,4 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/loginAluno', [AlunoController::class, 'login']);
+Route::get('/loginAluno', [AlunoController::class, 'login'])->name('aluno.login');
