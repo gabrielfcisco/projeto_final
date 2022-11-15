@@ -17,9 +17,10 @@ return new class extends Migration
             $table->id();
             $table->string('Nome');
             $table->string('CPF');
-            $table->string('Endereco');
-            $table->string('User');
-            $table->string('Password');
+            $table->string('Usuario')->unique();
+            $table->string('Senha');
+            $table->timestamp('Ultimo_acesso')->nullable();
+            $table->rememberToken();
             $table->timestamps();
         });
     }

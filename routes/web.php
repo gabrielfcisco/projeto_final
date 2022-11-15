@@ -18,4 +18,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/loginProfessor', [ProfessorController::class, 'login']);
+Route::get('/professor/login', [ProfessorController::class, 'index'])->name('professores.home');
+Route::post('professor/login/auth', [ProfessorController::class, 'auth'])->name('professores.login');
+
