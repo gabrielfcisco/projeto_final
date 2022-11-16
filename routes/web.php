@@ -21,3 +21,7 @@ Route::get('/', function () {
 Route::get('/professor/login', [ProfessorController::class, 'index'])->name('professores.home');
 Route::post('professor/login/auth', [ProfessorController::class, 'auth'])->name('professores.login');
 
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

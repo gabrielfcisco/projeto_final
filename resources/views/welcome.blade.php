@@ -21,6 +21,6 @@
         </style>
     </head>
     <body class="antialiased">
-       <a href="/professor/login">login professor</a>
+       <a href="/home">login</a>
     </body>
 </html>
