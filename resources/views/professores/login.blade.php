@@ -13,7 +13,7 @@
     <div class="main-login">
         <div class="left-login">
             <h1>Professor</h1>
-            <img src="seminar-animate.svg" class="left-login-img" alt="people-working">
+            <img src="/seminar-animate.svg" class="left-login-img" alt="people-working">
         </div>
         <div class="right-login">
             <div class="card-login">
@@ -26,7 +26,7 @@
                 <form action="{{route('professores.login')}}" method="POST">
                     @csrf
                     <div class="textfield">
-                        <label for="RP">RP</label>
+                        <label for="RP">Usuario</label>
                         <input id="RP" type="text" name="RP" placeholder="RP" required>
                     </div>
                     <div class="textfield">

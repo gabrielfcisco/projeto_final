@@ -21,7 +21,7 @@ class ProfessorController extends Controller
         if(Auth::attempt(['Usuario' => $request->Usuario,
                           'Senha'   => $request->Senha], $remember)){
             $request->session()->regenerate();
-            return redirect()->intended('Dashboard');
+            return redirect()->intended('Welcome');
         } else{
             return back()->withErrors([
                 'Usuario' => 'Não foi encontrado o usuário ou a senha inseridos.',

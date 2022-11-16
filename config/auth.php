@@ -65,10 +65,10 @@ return [
             'model' => App\Models\User::class,
         ],
 
-        // 'users' => [
-        //     'driver' => 'database',
-        //     'table' => 'users',
-        // ],
+        'professores' => [
+            'driver' => 'eloquent',
+            'model' => App\professor::class,
+        ],
     ],
 
     /*
