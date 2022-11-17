@@ -33,7 +33,7 @@ class HomeController extends Controller
      */
     public function administradorHome()
     {
-        return view('administradorHome');
+        return view('admin');
     }
   
     /**
@@ -43,6 +43,6 @@ class HomeController extends Controller
      */
     public function secretariaHome()
     {
-        return view('secretariaHome');
+        return view('secretaria');
     }
 }
