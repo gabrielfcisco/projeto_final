@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
-    /**
+/**
      * Create a new controller instance.
      *
      * @return void
@@ -15,7 +15,7 @@ class HomeController extends Controller
     {
         $this->middleware('auth');
     }
-
+  
     /**
      * Show the application dashboard.
      *
@@ -24,5 +24,25 @@ class HomeController extends Controller
     public function index()
     {
         return view('home');
+    } 
+  
+    /**
+     * Show the application dashboard.
+     *
+     * @return \Illuminate\Contracts\Support\Renderable
+     */
+    public function administradorHome()
+    {
+        return view('administradorHome');
+    }
+  
+    /**
+     * Show the application dashboard.
+     *
+     * @return \Illuminate\Contracts\Support\Renderable
+     */
+    public function secretariaHome()
+    {
+        return view('secretariaHome');
     }
 }
