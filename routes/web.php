@@ -19,3 +19,4 @@ Route::get('/', function () {
 });
 
 Route::get('/loginAluno', [AlunoController::class, 'login'])->name('aluno.login');
+Route::get('/matriculaAluno', [AlunoController::class, 'matricula']);
