@@ -30,11 +30,17 @@ All Normal Users Routes List
 Route::middleware(['auth', 'user-acess:aluno'])->group(function () {
   
     Route::get('/home', [HomeController::class, 'index'])->name('home');
+    Route::get('/', function () {
+        return view('welcome');
+    })->name('aluno.cadastro');
 });
 
 Route::middleware(['auth', 'user-acess:professor'])->group(function () {
   
     Route::get('/professor/home', [HomeController::class, 'professorHome'])->name('professor.home');
+    Route::get('/', function(){
+        return view('welcome');
+    })->name('professor.cadastro');
 });
   
 /*------------------------------------------
@@ -56,3 +62,4 @@ Route::middleware(['auth', 'user-acess:secretaria'])->group(function () {
   
     Route::get('/secretaria/home', [HomeController::class, 'secretariaHome'])->name('secretaria.home');
 });
+

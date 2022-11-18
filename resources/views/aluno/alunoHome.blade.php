@@ -14,7 +14,7 @@
                         </div>
                     @endif
   
-                    Você está na área de Aluno.
+                    <a href=
                 </div>
             </div>
         </div>

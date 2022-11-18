@@ -63,6 +63,29 @@
                                                      document.getElementById('logout-form').submit();">
                                         {{ __('Logout') }}
                                     </a>
+                            @if (Auth::user()->type == 'aluno')
+                            <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="{{ route('aluno.cadastro') }}"
+                                       onclick="event.preventDefault();
+                                                     document.getElementById('aluno-form').submit();">
+                                        {{ __('Atualizar Dados') }}
+                                    </a>
+                                    <form id="aluno-form" action="{{ route('aluno.cadastro') }}" method="POST" class="d-none">
+                                        @csrf
+                                    </form>
+                            @endif
+
+                            @if (Auth::user()->type == 'professor')
+                            <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="{{ route('professor.cadastro') }}"
+                                       onclick="event.preventDefault();
+                                                     document.getElementById('professor-form').submit();">
+                                        {{ __('Atualizar Dados') }}
+                                    </a>
+                                    <form id="professor-form" action="{{ route('professor.cadastro') }}" method="POST" class="d-none">
+                                        @csrf
+                                    </form>
+                            @endif                            
 
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                         @csrf
@@ -74,7 +97,9 @@
                 </div>
             </div>
         </nav>
-
+        <div>
+            @yield('menu')
+        </div>
         <main class="py-4">
             @yield('content')
         </main>
