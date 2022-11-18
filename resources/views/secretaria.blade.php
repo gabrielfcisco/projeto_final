@@ -7,7 +7,7 @@
                 <div class="card-header">{{ __('Dashboard') }}</div>
   
                 <div class="card-body">
-                    You are a Manager User.
+                    Você está na área da secretaria.
                 </div>
             </div>
         </div>

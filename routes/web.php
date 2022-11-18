@@ -31,6 +31,11 @@ Route::middleware(['auth', 'user-acess:aluno'])->group(function () {
   
     Route::get('/home', [HomeController::class, 'index'])->name('home');
 });
+
+Route::middleware(['auth', 'user-acess:professor'])->group(function () {
+  
+    Route::get('/professor/home', [HomeController::class, 'professorHome'])->name('professor.home');
+});
   
 /*------------------------------------------
 --------------------------------------------

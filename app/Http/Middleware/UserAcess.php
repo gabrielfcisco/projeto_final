@@ -20,7 +20,7 @@ class UserAcess
             return $next($request);
         }
           
-        return response()->json([auth()->user()->type]);
+        return response()->json([auth()->user()->type, $userType]);
         /* return response()->view('errors.check-permission'); */
     }
 }

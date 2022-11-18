@@ -14,7 +14,7 @@
                         </div>
                     @endif
   
-                    You are a User.
+                    Você está na área de Aluno.
                 </div>
             </div>
         </div>
