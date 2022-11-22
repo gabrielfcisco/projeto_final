@@ -76,6 +76,11 @@
                                         {{ __('Atualizar Dados') }}
                                     </a>
                                 </li>
+                                <li>
+                                    <a class="dropdown-item" href="{{ route('aluno.change-password', Auth::user()->id) }}">
+                                        {{ __('Troca de Senha') }}
+                                    </a>
+                                </li>
                             @endif
 
                             @if (Auth::user()->type == 'professor')
