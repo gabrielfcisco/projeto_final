@@ -35,8 +35,9 @@ Route::middleware(['auth', 'user-acess:aluno'])->group(function () {
     Route::get('/', function () {
         return view('welcome');
     })->name('aluno.cadastro');
-    Route::get('/change-password', [AlunoController::class, 'changePassword'])->name('aluno.change-password');
-    Route::post('/change-password', [AlunoController::class, 'updatePassword'])->name('aluno.update-password');
+    Route::get('/aluno/{id}/edit', [AlunoController::class, 'edit']);
+    Route::get('/change-password', [AlunoController::class, 'changePassword'])->name('change-password');
+    Route::post('/update-password', [AlunoController::class, 'updatePassword'])->name('update-password');
 });
 
 /*------------------------------------------
