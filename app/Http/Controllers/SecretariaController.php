@@ -7,19 +7,24 @@ use App\Models\Curso;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 
-class AlunoController extends Controller
+class SecretariaController extends Controller
 {
+    /*------------------------------------------
+    --------------------------------------------
+    CRUD Alunos
+    --------------------------------------------
+    --------------------------------------------*/
     public function index(aluno $aluno)
     {
-        $alunos = Aluno::orderBy('nome', 'asc')->paginate(10);
+        $alunos = Aluno::orderBy('Nome', 'asc')->paginate(10);
         $id = explode(',', $aluno->id_curso);
 
         foreach($id as $i)
         {
             $cursos = Curso::where('id', '=', $i)->get();
         }
-        
-        return view('secretaria.aluno.index', compact('alunos', 'cursos'));
+
+        return view('alunos.index', compact('alunos', 'cursos'));
     }
 
     public function create()
@@ -27,13 +32,13 @@ class AlunoController extends Controller
         $filmes = array();
 
         //$auxcategories =  Http::get('https://www.learn-laravel.cf/categories');
-        $categories = json_decode(Http::get('https://learn-laravel.cf/categories')->body());
+        $categories = Http::get('https://www.learn-laravel.cf/categories')->body();
         dd($categories);
 
         for($j=1; $j<7; $j++) {
 
             //$api = Http::get('https://www.learn-laravel.cf/movies?page=' . $j);
-            $api = json_decode(Http::get('https://learn-laravel.cf/movies?page=' . $j), true);
+            $api = json_decode(Http::get('https://www.learn-laravel.cf/movies?page=' . $j), true);
             
             foreach ($api['data'] as $filme){
                 for($i=0 ; $i<6; $i++){
@@ -47,29 +52,27 @@ class AlunoController extends Controller
             }
         } 
 
-        $cursos = curso::orderBy('nome', 'asc')->get();
+        $cursos = curso::orderBy('Nome', 'asc')->get();
 
-        return view('secretaria.aluno.create', compact('cursos', 'filmes'));
+        return view('alunos.create', compact('cursos', 'filmes'));
     }
 
     public function store(Request $request)
     {
         $request->validate([
-            'email' => 'required',
-            'nome' => 'required',
-            'sobrenome' => 'required',
-            'filme' => 'required',
-            'CPF' => 'required',
-            'materias' => 'required',
+            'RA' => 'required',
+            'Nome' => 'required',
+            'Sobrenome' => 'required',
+            'Filmes' => 'required',
+            'id_curso' => 'required',
         ]);
 
         aluno::create([
-            'email' => $request->RA,
-            'nome' => $request->Nome,
-            'sobrenome' => $request->Sobrenome,
-            'filme' => implode(", ", $request->Filmes),
-            'CPF' => $request->CPF,
-            'materias' => $request->id_curso,
+            'RA' => $request->RA,
+            'Nome' => $request->Nome,
+            'Sobrenome' => $request->Sobrenome,
+            'Filmes' => implode(", ", $request->Filmes),
+            'id_curso' => $request->id_curso,
         ]);
 
         return redirect()->route('aluno.index')->with('ok', 'aluno cadastrados com sucesso!');
@@ -80,12 +83,12 @@ class AlunoController extends Controller
         $filmes = array();
 
         //$auxcategories =  Http::get('https://www.learn-laravel.cf/categories');
-        $categories = json_decode(Http::get('https://learn-laravel.cf/categories'), true);
+        $categories = json_decode(Http::get('https://www.learn-laravel.cf/categories'), true);
 
         for($j=1; $j<7; $j++) {
 
             //$api = Http::get('https://www.learn-laravel.cf/movies?page=' . $j);
-            $api = json_decode(Http::get('https://learn-laravel.cf/movies?page=' . $j), true);
+            $api = json_decode(Http::get('https://www.learn-laravel.cf/movies?page=' . $j), true);
             
             foreach ($api['data'] as $filme){
                 for($i=0 ; $i<6; $i++){
@@ -99,29 +102,27 @@ class AlunoController extends Controller
             };
         } 
 
-        $cursos = curso::orderBy('nome', 'asc')->get();
+        $cursos = curso::orderBy('Nome', 'asc')->get();
 
-        return view('secretaria.aluno.edit', compact('aluno', 'cursos', 'filmes'));
+        return view('aluno.edit', compact('aluno', 'cursos', 'filmes'));
     }
 
     public function update(Request $request, aluno $aluno)
     {
         $request->validate([
-            'email' => $request->RA,
-            'nome' => $request->Nome,
-            'sobrenome' => $request->Sobrenome,
-            'filme' => implode(", ", $request->Filmes),
-            'CPF' => $request->CPF,
-            'materias' => $request->id_curso,
+            'RA' => 'required',
+            'Nome' => 'required',
+            'Sobrenome' => 'required',
+            'Filmes' => 'required',
+            'id_curso' => 'required',
         ]);
 
         $aluno->update([
-            'email' => $request->RA,
-            'nome' => $request->Nome,
-            'sobrenome' => $request->Sobrenome,
-            'filme' => implode(", ", $request->Filmes),
-            'CPF' => $request->CPF,
-            'materias' => $request->id_curso,
+            'RA' => $request->RA,
+            'Nome' => $request->Nome,
+            'Sobrenome' => $request->Sobrenome,
+            'Filmes' => implode(", ", $request->Filmes),
+            'id_curso' => $request->id_curso,
         ]);
 
         return redirect()->route('aluno.index')->with('ok', 'Aluno atualizado com sucesso!');

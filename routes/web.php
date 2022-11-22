@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\AlunoController;
+use App\Http\Controllers\CursoController;
 use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfessorController;
@@ -24,7 +26,7 @@ Auth::routes();
   
 /*------------------------------------------
 --------------------------------------------
-All Normal Users Routes List
+Lista de Rotas de Alunos
 --------------------------------------------
 --------------------------------------------*/
 Route::middleware(['auth', 'user-acess:aluno'])->group(function () {
@@ -34,6 +36,12 @@ Route::middleware(['auth', 'user-acess:aluno'])->group(function () {
         return view('welcome');
     })->name('aluno.cadastro');
 });
+
+/*------------------------------------------
+--------------------------------------------
+Lista de Rotas de Professores
+--------------------------------------------
+--------------------------------------------*/
 
 Route::middleware(['auth', 'user-acess:professor'])->group(function () {
   
@@ -45,7 +53,7 @@ Route::middleware(['auth', 'user-acess:professor'])->group(function () {
   
 /*------------------------------------------
 --------------------------------------------
-All Admin Routes List
+Lista de Rotas de Administrador
 --------------------------------------------
 --------------------------------------------*/
 Route::middleware(['auth', 'user-acess:administrador'])->group(function () {
@@ -55,11 +63,16 @@ Route::middleware(['auth', 'user-acess:administrador'])->group(function () {
   
 /*------------------------------------------
 --------------------------------------------
-All Secretary Routes List
+Lista de Rotas de Secretária
 --------------------------------------------
 --------------------------------------------*/
 Route::middleware(['auth', 'user-acess:secretaria'])->group(function () {
   
     Route::get('/secretaria/home', [HomeController::class, 'secretariaHome'])->name('secretaria.home');
+    Route::resources([
+        'aluno' => AlunoController::class,
+        'professor' => ProfessorController::class,
+        'curso' => CursoController::class,
+    ]);
 });
 
