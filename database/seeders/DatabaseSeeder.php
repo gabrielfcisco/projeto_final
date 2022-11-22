@@ -21,7 +21,36 @@ class DatabaseSeeder extends Seeder
 
         Aluno::factory(10)->create();
 
-        Curso::factory(10)->create();
+        $cursos = [
+            [
+               'nome'=>'Engenharia de Computação',
+               'descricao_completa'=>'Quod illum sed mollitia tempora cupiditate. Non quia alias quo ducimus maiores ullam.',
+               'descricao_curta' => 'ghjahglahglçfhaglçahgfhgahglfahglfhlgalhgljfhg',
+               'matriculas' => 0,
+               'max'=> 30,
+               'min' =>  10,
+            ],
+            [
+                'nome'=>'Engenharia Civil',
+                'descricao_completa'=>'Quod illum sed mollitia tempora cupiditate. Non quia alias quo ducimus maiores ullam.',
+                'descricao_curta' => 'ghjahglahglçfhaglçahgfhgahglfahglfhlgalhgljfhg',
+                'matriculas' => 0,
+                'max'=> 30,
+                'min' =>  10,
+            ],
+            [
+                'nome'=>'Engenharia de Química',
+                'descricao_completa'=>'Quod illum sed mollitia tempora cupiditate. Non quia alias quo ducimus maiores ullam.',
+                'descricao_curta' => 'ghjahglahglçfhaglçahgfhgahglfahglfhlgalhgljfhg',
+                'matriculas' => 0,
+                'max'=> 30,
+                'min' =>  10,
+            ],
+        ];
+
+        foreach ($cursos as $key => $user) {
+            Curso::create($user);
+        }
 
         // \App\Models\User::factory()->create([
         //     'name' => 'Test User',

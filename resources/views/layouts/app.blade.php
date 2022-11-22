@@ -13,7 +13,10 @@
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
-  
+    
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js" integrity="sha512-2ImtlRlf2VVmiGZsjm9bEyhjGW4dU7B6TNwh/hx/iSByxNENtj3WVE6o/9Lj4TJeVXPi4bnOIMXFIJJAeufa0A==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
     <!-- Scripts -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 
@@ -57,41 +60,33 @@
                                     {{ Auth::user()->name }}
                                 </a>
 
-                                <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ route('logout') }}"
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
                                         {{ __('Logout') }}
-                                    </a>
-                            @if (Auth::user()->type == 'aluno')
-                            <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ route('aluno.cadastro') }}"
-                                       onclick="event.preventDefault();
-                                                     document.getElementById('aluno-form').submit();">
-                                        {{ __('Atualizar Dados') }}
-                                    </a>
-                                    <form id="aluno-form" action="{{ route('aluno.cadastro') }}" method="POST" class="d-none">
-                                        @csrf
-                                    </form>
-                            @endif
-
-                            @if (Auth::user()->type == 'professor')
-                            <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ route('professor.cadastro') }}"
-                                       onclick="event.preventDefault();
-                                                     document.getElementById('professor-form').submit();">
-                                        {{ __('Atualizar Dados') }}
-                                    </a>
-                                    <form id="professor-form" action="{{ route('professor.cadastro') }}" method="POST" class="d-none">
-                                        @csrf
-                                    </form>
-                            @endif                            
-
+                                    </li></a>     
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                         @csrf
                                     </form>
-                                </div>
-                            </li>
+                                
+                                @if (Auth::user()->type == 'aluno')
+                                <li>
+                                    <a class="dropdown-item" href="{{ route('aluno.edit', Auth::user()->id) }}">
+                                        {{ __('Atualizar Dados') }}
+                                    </a>
+                                </li>
+                            @endif
+
+                            @if (Auth::user()->type == 'professor')
+                            <li>
+                                    <a class="dropdown-item" href="{{ route('professor.edit', Auth::user()->id) }}">
+                                        {{ __('Atualizar Dados') }}
+                                    </a>
+                                </li>
+                                
+                            @endif                     
+                            </ul>
                         @endguest
                     </ul>
                 </div>

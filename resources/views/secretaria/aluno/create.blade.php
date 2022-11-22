@@ -1,11 +1,11 @@
-@extends('alunos.master')
+@extends('layouts.app')
 @section('content')
 <div class="row">
 	<div class="col-12 col-md-10">
 		<h3>Inserir Aluno</h3>
 	</div>
 	<div class="col-12 col-md-2 text-end">
-		<a class="btn btn-primary" href="{{route('alunos.index')}}">Voltar</a>
+		<a class="btn btn-primary" href="{{route('aluno.index')}}">Voltar</a>
 	</div>
 </div>
 @if($errors->any())
@@ -25,23 +25,23 @@
 @endif
 <div class="row">
 	<div class="col-12">
-		<form method="POST" action="{{route('alunos.store')}}">
+		<form method="POST" action="{{route('aluno.store')}}">
 			@csrf
 			<div class="mb-3">
-				<label for="RA" class="form-label">RA</label>
-				<input type="text" class="form-control" id="RA" name="RA" placeholder="RA">
+				<label for="email" class="form-label">Email</label>
+				<input type="text" class="form-control" id="email" name="email" placeholder="email">
 			</div>
 			<div class="mb-3">
-				<label for="Nome" class="form-label">Nome</label>
-				<input type="text" class="form-control" id="Nome" name="Nome" placeholder="Nome">
+				<label for="nome" class="form-label">Nome</label>
+				<input type="text" class="form-control" id="nome" name="nome" placeholder="nome">
 			</div>
 			<div class="mb-3">
-				<label for="Sobrenome" class="form-label">Sobrenome</label>
-				<input type="text" class="form-control" id="Sobrenome" name="Sobrenome" placeholder="Sobrenome">
+				<label for="CPF" class="form-label">CPF</label>
+				<input type="text" class="form-control" id="CPF" name="CPF" placeholder="CPF">
 			</div>
 			<div class="mb-3">
 				<label for="Filmes" class="form-label">Filmes</label><br>
-				<select class="filmes" name="Filmes[]" multiple="multiple" id="Filmes">
+				<select class="filme" name="filmes[]" multiple="multiple" id="filmes">
 					@if(count($filmes) > 0)
 					@foreach($filmes as $filme)
 					<option value="{{ $filme['nome'] }}">{{ $filme['nome'] }}</option>
@@ -52,16 +52,16 @@
 				</select>
 				<script>
 					$(document).ready(function() {
-						$('.filmes').select2();
+						$('.filme').select2();
 					});
 				</script>
 			</div>
 			<div class="mb-3">
 				<label for="id_materia" class="form-label">Matérias</label><br>
 				<select name="id_materia" class="id_materia" id="id_materia">
-					@if($materias->count() > 0)
-					@foreach($materias as $materia)
-					<option value="{{ $materia['id'] }}">{{ $materia['Nome'] }}</option>
+					@if($cursos->count() > 0)
+					@foreach($cursos as $materia)
+					<option value="{{ $materia['id'] }}">{{ $materia['nome'] }}</option>
 					@endforeach
 					@else
 					<option colspan="4">Matéria não inserida!</option>

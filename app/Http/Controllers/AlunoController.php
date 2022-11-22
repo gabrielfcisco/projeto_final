@@ -27,8 +27,7 @@ class AlunoController extends Controller
         $filmes = array();
 
         //$auxcategories =  Http::get('https://www.learn-laravel.cf/categories');
-        $categories = json_decode(Http::get('https://learn-laravel.cf/categories')->body());
-        dd($categories);
+        $categories = json_decode(Http::get('https://learn-laravel.cf/categories'), true);
 
         for($j=1; $j<7; $j++) {
 
@@ -38,7 +37,7 @@ class AlunoController extends Controller
             foreach ($api['data'] as $filme){
                 for($i=0 ; $i<6; $i++){
                     if($filme['category_id'] == $i+1){
-                        $filmes = array(
+                        $filmes[] = array(
                             'id' => $filme['id'], 
                             'nome' => $filme['name'],
                             'category' => $categories[$i]['name']);
@@ -46,7 +45,7 @@ class AlunoController extends Controller
                 }
             }
         } 
-
+  
         $cursos = curso::orderBy('nome', 'asc')->get();
 
         return view('secretaria.aluno.create', compact('cursos', 'filmes'));
@@ -90,7 +89,7 @@ class AlunoController extends Controller
             foreach ($api['data'] as $filme){
                 for($i=0 ; $i<6; $i++){
                     if($filme['category_id'] == $i+1){
-                        $filmes = array(
+                        $filmes[] = array(
                             'id' => $filme['id'], 
                             'nome' => $filme['name'],
                             'category' => $categories[$i]['name']);
@@ -107,7 +106,7 @@ class AlunoController extends Controller
     public function update(Request $request, aluno $aluno)
     {
         $request->validate([
-            'email' => $request->RA,
+            'email' => Hash::make($request->RA),
             'nome' => $request->Nome,
             'sobrenome' => $request->Sobrenome,
             'filme' => implode(", ", $request->Filmes),

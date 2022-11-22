@@ -60,9 +60,9 @@
 			<div class="mb-3">
 				<label for="id_materia" class="form-label">Matérias</label><br>
 				<select name="id_materia" class="id_materia" id="id_materia">
-					@if($curso->count() > 0)
-					@foreach($curso as $materia)
-					<option value="{{ $materia['id'] }}">{{ $materia['Nome'] }}</option>
+					@if($cursos->count() > 0)
+					@foreach($cursos as $materia)
+					<option value="{{ $materia['id'] }}">{{ $materia['nome'] }}</option>
 					@endforeach
 					@else
 					<option colspan="4">Matéria não inserida!</option>

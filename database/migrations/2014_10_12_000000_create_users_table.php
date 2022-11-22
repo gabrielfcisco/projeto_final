@@ -18,13 +18,11 @@ return new class extends Migration
             $table->string('name');
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
-            $table->boolean('admin')->nullable();
-            $table->boolean('secretaria')->nullable();
             $table->string('password');
             $table->tinyInteger('type')->default(0);
             // Aluno->0 | Professor->1 | Secretaria->2 | Administrador->3
             $table->rememberToken();
-            $table->timestampsTz();
+            $table->timestamps();
         });
     }
 
