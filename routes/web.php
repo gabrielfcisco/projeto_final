@@ -1,11 +1,9 @@
 <?php
 
-use App\Http\Controllers\AlunosController;
-use App\Http\Controllers\ProfessoresController;
-use App\Http\Controllers\MateriasController;
-use App\Http\Controllers\UserController;
-use App\Models\alunos;
+use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ProfessorController;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,26 +16,50 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-//Route::get('login', [AlunosController::class, 'login'])->name('alunos.login');
+Route::get('/', function () {
+    return view('welcome');
+});
+  
+Auth::routes();
+  
+/*------------------------------------------
+--------------------------------------------
+All Normal Users Routes List
+--------------------------------------------
+--------------------------------------------*/
+Route::middleware(['auth', 'user-acess:aluno'])->group(function () {
+  
+    Route::get('/home', [HomeController::class, 'index'])->name('home');
+    Route::get('/', function () {
+        return view('welcome');
+    })->name('aluno.cadastro');
+});
 
-//Route::put('login/authenticate', [AlunosController::class, 'authenticate'])->name('alunos.authenticate');
+Route::middleware(['auth', 'user-acess:professor'])->group(function () {
+  
+    Route::get('/professor/home', [HomeController::class, 'professorHome'])->name('professor.home');
+    Route::get('/', function(){
+        return view('welcome');
+    })->name('professor.cadastro');
+});
+  
+/*------------------------------------------
+--------------------------------------------
+All Admin Routes List
+--------------------------------------------
+--------------------------------------------*/
+Route::middleware(['auth', 'user-acess:administrador'])->group(function () {
+  
+    Route::get('/administrador/home', [HomeController::class, 'administradorHome'])->name('administrador.home');
+});
+  
+/*------------------------------------------
+--------------------------------------------
+All Secretary Routes List
+--------------------------------------------
+--------------------------------------------*/
+Route::middleware(['auth', 'user-acess:secretaria'])->group(function () {
+  
+    Route::get('/secretaria/home', [HomeController::class, 'secretariaHome'])->name('secretaria.home');
+});
 
-//Route::resource('alunos', AlunosController::class);
-
-//Route::resource('professores', ProfessoresController::class);
-
-//Route::resource('materias', MateriasController::class);
-
-Route::get('/login', [UserController::class, 'index'])->name('login.home');
-
-Route::post('/login/auth', [UserController::class, 'auth'])->name('user.login');
-
-Route::get('/welcome', function(){
-  return view('welcome');
-})->middleware('admin');
-
-Route::get('/admin', [UserController::class, 'teste'])->middleware('admin');
-
-Route::get('/secretaria', [UserController::class, 'teste2'])->middleware('secretaria');
-
-Route::get('/logout', [UserController::class, 'logout'])->name('logout');
