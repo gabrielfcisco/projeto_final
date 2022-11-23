@@ -51,11 +51,6 @@
                         </li>
                         @endif
 
-                        @if (Route::has('register'))
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
-                        </li>
-                        @endif
                         @else
                         <li class="nav-item dropdown">
                             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
@@ -63,6 +58,12 @@
                             </a>
 
                             <ul class="dropdown-menu">
+
+                                @if (Auth::user()->type == 'secretaria' || Auth::user()->type == 'administrador')
+                                <li>
+                                    <a class="dropdown-item" href="{{ route('register') }}">{{ __('Cadastrar Usuário') }}</a>
+                                </li>
+                                @endif
 
                                 @if (Auth::user()->type == 'aluno')
                                 <li>

@@ -4,7 +4,7 @@
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card">
-                    <div class="card-header">{{ __('Change Password') }}</div>
+                    <div class="card-header">{{ __('Trocar Senha') }}</div>
 
                     <form action="{{ route('update-password') }}" method="POST">
                         @csrf
@@ -44,7 +44,7 @@
                         </div>
 
                         <div class="card-footer">
-                            <button class="btn btn-primary">Submit</button>
+                            <button class="btn btn-primary">Enviar</button>
                         </div>
 
                     </form>
