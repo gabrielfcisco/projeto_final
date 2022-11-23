@@ -6,6 +6,7 @@ namespace Database\Seeders;
 
 use App\Models\Aluno;
 use App\Models\Curso;
+use App\Models\Professor;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -21,35 +22,57 @@ class DatabaseSeeder extends Seeder
 
         Aluno::factory(10)->create();
 
-        $cursos = [
+        // $cursos = [
+        //     [
+        //        'nome'=>'Engenharia de Computação',
+        //        'descricao_completa'=>'Quod illum sed mollitia tempora cupiditate. Non quia alias quo ducimus maiores ullam.',
+        //        'descricao_curta' => 'ghjahglahglçfhaglçahgfhgahglfahglfhlgalhgljfhg',
+        //        'matriculas' => 0,
+        //        'max'=> 30,
+        //        'min' =>  10,
+        //        'professor_id' => 1,
+        //     ],
+        //     [
+        //         'nome'=>'Engenharia Civil',
+        //         'descricao_completa'=>'Quod illum sed mollitia tempora cupiditate. Non quia alias quo ducimus maiores ullam.',
+        //         'descricao_curta' => 'ghjahglahglçfhaglçahgfhgahglfahglfhlgalhgljfhg',
+        //         'matriculas' => 0,
+        //         'max'=> 30,
+        //         'min' =>  10,
+        //         'professor_id' => 1,
+        //     ],
+        //     [
+        //         'nome'=>'Engenharia de Química',
+        //         'descricao_completa'=>'Quod illum sed mollitia tempora cupiditate. Non quia alias quo ducimus maiores ullam.',
+        //         'descricao_curta' => 'ghjahglahglçfhaglçahgfhgahglfahglfhlgalhgljfhg',
+        //         'matriculas' => 0,
+        //         'max'=> 30,
+        //         'min' =>  10,
+        //         'professor_id' => 1,
+        //     ],
+        // ];
+
+        // foreach ($cursos as $key => $user) {
+        //     Curso::create($user);
+        // }
+
+        $professores = [
             [
-               'nome'=>'Engenharia de Computação',
-               'descricao_completa'=>'Quod illum sed mollitia tempora cupiditate. Non quia alias quo ducimus maiores ullam.',
-               'descricao_curta' => 'ghjahglahglçfhaglçahgfhgahglfahglfhlgalhgljfhg',
-               'matriculas' => 0,
-               'max'=> 30,
-               'min' =>  10,
+               'nome'=>'Xastre',
+               'CPF'=> '45863257852',
             ],
             [
-                'nome'=>'Engenharia Civil',
-                'descricao_completa'=>'Quod illum sed mollitia tempora cupiditate. Non quia alias quo ducimus maiores ullam.',
-                'descricao_curta' => 'ghjahglahglçfhaglçahgfhgahglfahglfhlgalhgljfhg',
-                'matriculas' => 0,
-                'max'=> 30,
-                'min' =>  10,
+                'nome'=>'Miro',
+                'CPF'=> '97854123658',
             ],
             [
-                'nome'=>'Engenharia de Química',
-                'descricao_completa'=>'Quod illum sed mollitia tempora cupiditate. Non quia alias quo ducimus maiores ullam.',
-                'descricao_curta' => 'ghjahglahglçfhaglçahgfhgahglfahglfhlgalhgljfhg',
-                'matriculas' => 0,
-                'max'=> 30,
-                'min' =>  10,
+                'nome'=>'Pannain',
+                'CPF'=> '45321578965',
             ],
         ];
 
-        foreach ($cursos as $key => $user) {
-            Curso::create($user);
+        foreach ($professores as $key => $user) {
+            Professor::create($user);
         }
 
         // \App\Models\User::factory()->create([

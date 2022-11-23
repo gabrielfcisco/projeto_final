@@ -5,21 +5,20 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Aluno extends Model
+class Professor extends Model
 {
     use HasFactory;
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array<int, string>
-     */
+    protected $table = 'professores';
+
     protected $fillable = [
-        'nome',
-        'CPF',
-        'filme',
-        'ultimoAcesso',
-        'materias',
+    'Nome',
+    'CPF',
+    'Ultimo_acesso',
+    ];
+
+    protected $casts = [
+        'Utlimo_acesso' => 'datetime',
     ];
 
     public function cursos(){
@@ -29,6 +28,4 @@ class Aluno extends Model
     public function user(){
         return $this->hasOne(User::class);
     }
-
-
 }

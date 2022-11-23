@@ -159,6 +159,20 @@ class AlunoController extends Controller
                'password' => Hash::make($request->new_password)
            ]);
 
-           return back()->with("status", "Password changed successfully!"); }
+           return back()->with("status", "Password changed successfully!");
+        }
+        
+    public function show (Aluno $aluno){
+           $aluno -> cursos()->create([
+            'nome'=>'Engenharia do Amor',
+            'descricao_completa'=>'Quod illum sed mollitia tempora cupiditate. Non quia alias quo ducimus maiores ullam.',
+            'descricao_curta' => 'ghjahglahglçfhaglçahgfhgahglfahglfhlgalhgljfhg',
+            'matriculas' => 0,
+            'max'=> 30,
+            'min' =>  10,
+        ]);
+
+        dd($aluno->cursos);
+    }
 
 }

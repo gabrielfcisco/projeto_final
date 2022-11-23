@@ -19,7 +19,7 @@ class AlunoFactory extends Factory
         return [
             'nome' => fake()->name(),
             'CPF' => fake()->unique()->numerify('###########'),
-            'ultimo_acesso' => now(),
+            'ultimoAcesso' => now(),
         ];
     }
 }

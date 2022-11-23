@@ -17,9 +17,11 @@ return new class extends Migration
             $table->id();
             $table->string('Nome');
             $table->string('CPF');
-            $table->string('Usuario')->unique();
-            $table->string('Senha');
             $table->timestamp('Ultimo_acesso')->nullable();
+            $table->foreignId('user_id')
+                ->constrained()
+                ->onDelete('CASCADE')
+                ->onUpdate('CASCADE');
             $table->rememberToken();
             $table->timestamps();
         });

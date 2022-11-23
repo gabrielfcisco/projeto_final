@@ -20,7 +20,17 @@ class Curso extends Model
         'descricao_curta',
         'max',
         'min',
+        'professor_id',
+        'aluno_id',
         'file_path',
     ];
+
+    public function alunos(){
+        return $this->belongsToMany(Aluno::class);
+    }
+    
+    public function professor(){
+        return $this->belongsTo(Professor::class);
+    }
 
 }

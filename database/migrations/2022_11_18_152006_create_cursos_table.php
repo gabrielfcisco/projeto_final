@@ -21,6 +21,16 @@ return new class extends Migration
             $table->integer('matriculas')->default(0);
             $table->integer('max');
             $table->integer('min');
+            $table->foreignId('aluno_id')
+                ->nullable()
+                ->constrained('alunos')
+                ->onDelete('CASCADE')
+                ->onUpdate('CASCADE');
+            $table->foreignId('professor_id')
+                ->nullable()
+                ->constrained('professores')
+                ->onDelete('CASCADE')
+                ->onUpdate('CASCADE');
             $table->string('file_path')->nullable();
             $table->timestamps();
         });
