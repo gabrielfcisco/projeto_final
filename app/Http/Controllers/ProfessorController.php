@@ -2,40 +2,31 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\professor;
+use App\Models\Professor;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class ProfessorController extends Controller
 {
     public function index(){
-        if(Auth::check()){
-            return  view('welcome');
-        }
-        return view('professores.login');
+
+        $professores = Professor::orderBy('Nome', 'asc')->paginate(10);
+
+        return view('professor.index', compact('professores'));
     }
 
-    public function auth(Request $request){
-        $remember = isset($request->remember)? true : false;
+    public function show(Professor $professor){
+        $professor -> cursos()->create([
+            'nome'=>'Engenharia Agrícola',
+            'descricao_completa'=>'Quod illum sed mollitia tempora cupiditate. Non quia alias quo ducimus maiores ullam.',
+            'descricao_curta' => 'ghjahglahglçfhaglçahgfhgahglfahglfhlgalhgljfhg',
+            'matriculas' => 0,
+            'max'=> 30,
+            'min' =>  10,
+        ]);
 
-        if(Auth::attempt(['Usuario' => $request->Usuario,
-                          'Senha'   => $request->Senha], $remember)){
-            $request->session()->regenerate();
-            return redirect()->intended('Welcome');
-        } else{
-            return back()->withErrors([
-                'Usuario' => 'Não foi encontrado o usuário ou a senha inseridos.',
-            ])->onlyInput('Usuario');
-        }
-    }
+        dd($professor->cursos);
 
-    public function logout(){
-        Auth::logout();
-
-        $request->session()->invalidate();
-
-        $request->session()->regenerateToken();
-
-        return redirect('professores.login');
+        return view('professor.index', compact('professores'));
     }
 }

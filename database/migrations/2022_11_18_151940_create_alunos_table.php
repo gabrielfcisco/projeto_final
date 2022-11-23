@@ -19,8 +19,11 @@ return new class extends Migration
             $table->string('CPF')->unique();
             // $table->string('endereco');
             $table->string('filme')->nullable();
-            $table->timestampTz('ultimo_acesso')->nullable();
-            $table->string('materias')->nullable();
+            $table->foreignId('user_id')
+                ->constrained()
+                ->onDelete('CASCADE')
+                ->onUpdate('CASCADE');
+            $table->timestampTz('ultimoAcesso')->nullable();
             $table->timestamps();
         });
     }

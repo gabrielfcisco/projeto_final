@@ -157,10 +157,32 @@ class AlunoController extends Controller
         }
 
 
-        #Update the new Password
-        User::whereId(Auth::user()->id)->update([
-            'password' => Hash::make($request->new_password)
+           #Match The Old Password
+           if(!Hash::check($request->old_password, auth()->user()->password)){
+               return back()->with("error", "Old Password Doesn't match!");
+           }
+
+
+           #Update the new Password
+            User::whereId(auth()->user()->id)->update([
+               'password' => Hash::make($request->new_password)
+           ]);
+
+           return back()->with("status", "Password changed successfully!");
+        }
+        
+    public function show (Aluno $aluno){
+           $aluno -> cursos()->create([
+            'nome'=>'Engenharia do Amor',
+            'descricao_completa'=>'Quod illum sed mollitia tempora cupiditate. Non quia alias quo ducimus maiores ullam.',
+            'descricao_curta' => 'ghjahglahglçfhaglçahgfhgahglfahglfhlgalhgljfhg',
+            'matriculas' => 0,
+            'max'=> 30,
+            'min' =>  10,
         ]);
+
+        dd($aluno->cursos);
+    }
 
         return back()->with("status", "Password changed successfully!");
     }
