@@ -31,7 +31,7 @@ class ProfessorController extends Controller
         return view('professor.index', compact('professores'));
     }
 
-//     public function showCursos(Professor $professor){
-//         $cursos = Curso::where('id_professor', )
-//     }
+    public function showCursos(Professor $professor){
+        return view('professor.cursos', compact('professor'));
+    }
 }

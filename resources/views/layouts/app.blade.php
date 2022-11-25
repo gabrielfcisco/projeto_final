@@ -54,7 +54,16 @@
                         @else
                         <li class="nav-item dropdown">
                             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                {{ Auth::user()->name }}
+                                
+                                @if (Auth::user()->type == 'aluno')
+                                    {{ Auth::user()->aluno->nome }}
+                                @elseif (Auth::user()->type == 'professor')
+                                    {{ Auth::user()->professor->nome }}
+                                @elseif (Auth::user()->type == 'secretaria')
+                                    Secretaria
+                                @elseif (Auth::user()->type == 'administrador')
+                                    Administrador
+                                @endif
                             </a>
 
                             <ul class="dropdown-menu">

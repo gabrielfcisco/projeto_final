@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use Symfony\Component\HttpKernel\Profiler\Profile;
 
 class User extends Authenticatable
 {
@@ -58,4 +59,8 @@ class User extends Authenticatable
             get: fn ($value) =>  ["aluno", "professor", "secretaria", "administrador"][$value],
         );
     }
+    public function professor(){
+        return $this->hasOne(Professor::class);
+    }
+
 }

@@ -183,7 +183,4 @@ class AlunoController extends Controller
 
         dd($aluno->cursos);
     }
-
-        return back()->with("status", "Password changed successfully!");
-    }
 }

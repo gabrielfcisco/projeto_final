@@ -7,7 +7,8 @@
                 <div class="card-header">{{ __('Dashboard') }}</div>
   
                 <div class="card-body">
-                    Você está na área de Professor.
+                    <a type="button" class="btn btn-outline-dark" href={{ route('professor.showCursos', Auth::user()->professor->id) }}>Cursos ministrando</a>
+                    @yield('bolsonaro')
                 </div>
             </div>
         </div>

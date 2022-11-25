@@ -49,6 +49,7 @@ Lista de Rotas de Professores
 Route::middleware(['auth', 'user-acess:professor'])->group(function () {
   
     Route::get('/professor/home', [HomeController::class, 'professorHome'])->name('professor.home');
+    Route::get('/professor/{id}/cursos', [ProfessorController::class, 'showCursos'])->name('professor.showCursos');
     Route::get('/', function(){
         return view('welcome');
     })->name('professor.cadastro');
