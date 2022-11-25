@@ -31,7 +31,7 @@ Lista de Rotas de Alunos
 --------------------------------------------*/
 Route::middleware(['auth', 'user-acess:aluno'])->group(function () {
   
-    Route::get('/home', [HomeController::class, 'index'])->name('home');
+    Route::get('/home', [HomeController::class, 'index'])->name('aluno.home');
     Route::get('/', function () {
         return view('welcome');
     })->name('aluno.cadastro');

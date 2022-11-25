@@ -20,6 +20,7 @@ class AlunoFactory extends Factory
             'nome' => fake()->name(),
             'CPF' => fake()->unique()->numerify('###########'),
             'ultimoAcesso' => now(),
+            'endereco' => fake()->address(),
         ];
     }
 }

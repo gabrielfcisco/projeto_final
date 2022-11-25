@@ -5,7 +5,7 @@
 		<h3>Editar Aluno</h3>
 	</div>
 	<div class="col-12 col-md-2 text-end">
-		<a class="btn btn-primary" href="{{route('aluno.index')}}">Voltar</a>
+		<a class="btn btn-primary" href="{{route(Auth::user()->type. '.home')}}">Voltar</a>
 	</div>
 </div>
 @if($errors->any())
