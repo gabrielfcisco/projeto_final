@@ -174,7 +174,7 @@ class AlunoController extends Controller
             'min' =>  10,
         ]);
 
-        dd($aluno->cursos);
-        return($aluno);
+        $cursos = $aluno->cursos;
+        return view('alunos.showCursos', compact('cursos'));
     }
 }
