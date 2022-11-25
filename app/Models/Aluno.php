@@ -19,6 +19,7 @@ class Aluno extends Model
         'CPF',
         'filme',
         'ultimoAcesso',
+        'endereco',
         'materias',
     ];
 
@@ -27,7 +28,7 @@ class Aluno extends Model
     }
 
     public function user(){
-        return $this->hasOne(User::class);
+        return $this->belongsTo(User::class);
     }
 
 

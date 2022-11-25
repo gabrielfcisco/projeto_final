@@ -13,73 +13,49 @@
         </tr>
     </thead>
     @if($cursos->count() > 0)
-				@foreach($cursos as $curso)
-				<tr>
-					<td>{{$loop->index + 1}}</td>
-					<td>{{$curso->nome}}</td>
-					<td>{{$curso->descricao_completa}}</td>
-					<td>{{$curso->descricao_curta}}</td>
-					@if($curso->status == true)
-					<td>
-						<form action="{{ route('curso.destroy', $curso->id) }}" method="POST">
-						<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-								Detalhes
-							</button>
+		@foreach($cursos as $curso)
+			<tr>
+				<td>{{$loop->index + 1}}</td>
+				<td>{{$curso->nome}}</td>
+				<td>{{$curso->descricao_completa}}</td>
+				<td>{{$curso->descricao_curta}}</td>
+				@if($curso->aberto_matricula == true)
+				<td>
+					<button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal">
+						Realizar Matrícula
+					</button>
 
-							<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-								<div class="modal-dialog">
-									<div class="modal-content">
-										<div class="modal-header">
-											<h1 class="modal-title fs-5" id="exampleModalLabel">Detalhes</h1>
-											<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-										</div>
+					<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+						<div class="modal-dialog">
+							<div class="modal-content">
+								<div class="modal-header">
+									<h1 class="modal-title fs-5" id="exampleModalLabel">{{$curso->nome}}</h1>
+									<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+								</div>
 										<div class="modal-body">
-											<div class="row">
-												<div class="col-12 mb-3">
-													<strong>Email: </strong>
-													{{ $curso->email }}
-												</div>
-												<div class="col-12 mb-3">
-													<strong>Nome: </strong>
-													{{ $curso->nome }}
-												</div>
-												<div class="col-12 mb-3">
-													<strong>CPF: </strong>
-													{{ $curso->CPF }}
-												</div>
-												<div class="col-12 mb-3">
-													<strong>Filmes: </strong>
-													{{ $curso->filmes }}
-												</div>
-												<div class="col-12 mb-3">
-													<strong>Matéria: </strong>
-													@if(count($cursos) > 0)
-														@foreach($cursos as $materia)
-															{{ $materia->Nome }}<br>
-														@endforeach
-													@else
-													<option colspan="4">Record not found!</option>
-													@endif
-												</div>
-											</div>
+										  <p>{{$curso->descricao_completa}}</p>
 										</div>
 										<div class="modal-footer">
-											<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+										  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+										  <button href="{{route('curso.matricula', Auth::user()->aluno->id, $curso->id)}}" type="button" class="btn btn-success">Efetuar Matrícula</button>
 										</div>
+									  </div>
 									</div>
 								</div>
 							</div>
-							<a class="btn btn-primary" href="{{ route('curso.edit', $curso->id) }}">Editar</a>
-							@csrf
-							@method('DELETE')
-							<button type="submit" class="btn btn-danger">Excluir</button>
-						</form>
-					</td>
-				</tr>
-				@endforeach
+						</div>
+					</div>
+				</td>
+				@else
+				<td>
+					<a class="btn btn-danger" href="#">Matrículas Encerradas</a>
+				</td>
+				@endif
+			</tr>
+		@endforeach
 				@else
 				<tr>
-					<td colspan="4">Record not found!</td>
+					<td colspan="4">Dados não encontrados!</td>
 				</tr>
 				@endif
 			</tbody>

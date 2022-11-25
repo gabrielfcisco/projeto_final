@@ -40,7 +40,9 @@
                     <ul class="navbar-nav me-auto">
 
                     </ul>
-
+                    @php
+                    $type = Auth::user()->type
+                    @endphp
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ms-auto">
                         <!-- Authentication Links -->
@@ -54,33 +56,33 @@
                         @else
                         <li class="nav-item dropdown">
                             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                {{ Auth::user()->name }}
+                                {{ Auth::user()->$type->nome }}
                             </a>
 
                             <ul class="dropdown-menu">
 
-                                @if (Auth::user()->type == 'secretaria' || Auth::user()->type == 'administrador')
+                                @if ($type == 'secretaria' || $type == 'administrador')
                                 <li>
                                     <a class="dropdown-item" href="{{ route('register') }}">{{ __('Cadastrar Usuário') }}</a>
                                 </li>
                                 @endif
 
-                                @if (Auth::user()->type == 'aluno')
+                                @if ($type == 'aluno')
                                 <li>
-                                    <a class="dropdown-item" href="{{ route('aluno.edit', Auth::user()->id) }}">
+                                    <a class="dropdown-item" href="{{ route('aluno.edit', $id) }}">
                                         {{ __('Atualizar Dados') }}
                                     </a>
                                 </li>
                                 <li>
-                                    <a class="dropdown-item" href="{{ route('change-password', Auth::user()->id) }}">
+                                    <a class="dropdown-item" href="{{ route('change-password', $id) }}">
                                         {{ __('Troca de Senha') }}
                                     </a>
                                 </li>
                                 @endif
 
-                                @if (Auth::user()->type == 'professor')
+                                @if ($type == 'professor')
                                 <li>
-                                    <a class="dropdown-item" href="{{ route('professor.edit', Auth::user()->id) }}">
+                                    <a class="dropdown-item" href="{{ route('professor.edit', $id) }}">
                                         {{ __('Atualizar Dados') }}
                                     </a>
                                 </li>

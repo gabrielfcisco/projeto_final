@@ -80,6 +80,7 @@ class AlunoController extends Controller
     public function edit(aluno $aluno)
     {
         $aluno = Aluno::find(Auth::user()->id);
+        $curso = $aluno->curso;
         
         $filmes = array();
 
@@ -164,17 +165,35 @@ class AlunoController extends Controller
         return back()->with("status", "Password changed successfully!");
     }
         
-    public function show (Aluno $aluno){
-           $aluno -> cursos()->create([
-            'nome'=>'Engenharia do Amor',
-            'descricao_completa'=>'Quod illum sed mollitia tempora cupiditate. Non quia alias quo ducimus maiores ullam.',
-            'descricao_curta' => 'ghjahglahglçfhaglçahgfhgahglfahglfhlgalhgljfhg',
-            'matriculas' => 0,
-            'max'=> 30,
-            'min' =>  10,
-        ]);
+    public function show (User $user)
+    {   
+        $user = User::find(Auth::user()->id);
+        // $user->aluno()->create([
+        //     'nome'=>'Gabriel',
+        //     'CPF'=>'45789654855',
+        //     'endereco'=>'Rua da Vida, 237',
+        //     'ultimoAcesso'=>now(),
+        // ]);
+
+        $aluno = $user->aluno;
+
+        // $aluno -> cursos()->create([
+        //     'nome'=>'Engenharia do Amor',
+        //     'descricao_completa'=>'Quod illum sed mollitia tempora cupiditate. Non quia alias quo ducimus maiores ullam.',
+        //     'descricao_curta' => 'ghjahglahglçfhaglçahgfhgahglfahglfhlgalhgljfhg',
+        //     'matriculas' => 0,
+        //     'max'=> 30,
+        //     'min' =>  10,
+        //     'aberto_matricula' => true,
+        // ]);
 
         $cursos = $aluno->cursos;
-        return view('alunos.showCursos', compact('cursos'));
+        return view('aluno.cursos', compact('cursos'));
+    }
+
+    public function matricula(Aluno $aluno, Curso $curso){
+        Curso::whereId($curso->id)->update([
+            
+        ])
     }
 }

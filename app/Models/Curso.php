@@ -23,6 +23,7 @@ class Curso extends Model
         'professor_id',
         'aluno_id',
         'file_path',
+        'aberto_matricula',
     ];
 
     public function alunos(){
@@ -30,7 +31,7 @@ class Curso extends Model
     }
     
     public function professor(){
-        return $this->belongsTo(Professor::class);
+        return $this->belongsToMany(Professor::class);
     }
 
 }

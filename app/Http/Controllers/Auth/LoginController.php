@@ -3,10 +3,12 @@
 namespace App\Http\Controllers\Auth;
   
 use App\Http\Controllers\Controller;
+use App\Models\User;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
-  
+use Illuminate\Support\Facades\Auth;
+
 class LoginController extends Controller
 {
     /*
@@ -55,9 +57,9 @@ class LoginController extends Controller
             }else if (auth()->user()->type == 'secretaria') {
                 return redirect()->route('secretaria.home');
             }else if(auth()->user()->type == 'professor'){
-                return redirect()->route('professor.home');
+                return redirect()->route('professor.home', compact('usuario'));
             }else{
-                return redirect()->route('aluno.home');
+                return redirect()->route('aluno.home', compact('usuario'));
             }
         }else{
             return redirect()->route('login')
