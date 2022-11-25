@@ -20,6 +20,7 @@ return new class extends Migration
             // $table->string('endereco');
             $table->string('filme')->nullable();
             $table->foreignId('user_id')
+                ->nullable()
                 ->constrained()
                 ->onDelete('CASCADE')
                 ->onUpdate('CASCADE');

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Curso;
 use App\Models\Professor;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -29,4 +30,8 @@ class ProfessorController extends Controller
 
         return view('professor.index', compact('professores'));
     }
+
+//     public function showCursos(Professor $professor){
+//         $cursos = Curso::where('id_professor', )
+//     }
 }

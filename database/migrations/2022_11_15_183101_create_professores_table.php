@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('CPF');
             $table->timestamp('Ultimo_acesso')->nullable();
             $table->foreignId('user_id')
+                ->nullable()
                 ->constrained()
                 ->onDelete('CASCADE')
                 ->onUpdate('CASCADE');
