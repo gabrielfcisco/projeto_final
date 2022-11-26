@@ -24,7 +24,7 @@ class Professor extends Model
     public function cursos(){
         return $this->hasMany(Curso::class);
     }
-
+    
     public function user(){
         return $this->belongsTo(User::class);
     }

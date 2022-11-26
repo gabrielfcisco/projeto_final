@@ -1,9 +1,6 @@
-@extends('professor.professorHome')
+@extends('professor.masterProfessor')
 @section('bolsonaro')
-    @if (count(Auth::user()->professor->curso)>0)
-        @foreach (Auth::user()->professor->curso as $curso)
-            <p>{{$curso->nome}}</p>
-        @endforeach
-    @endif
-    
+    @foreach ($cursos as $curso)
+        <a href="{{ route('professor.showCurso', ['professor'=> Auth::user()->professor->id ,'curso' => $curso->id]) }}">{{$curso->nome}}</a><br>
+    @endforeach
 @endsection
