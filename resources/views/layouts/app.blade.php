@@ -40,7 +40,11 @@
                     <ul class="navbar-nav me-auto">
 
                     </ul>
-
+                    @php
+                    $type="";
+                    if(Auth::user() != null)
+                    $type = Auth::user()->type;
+                    @endphp
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ms-auto">
                         <!-- Authentication Links -->
@@ -68,13 +72,13 @@
 
                             <ul class="dropdown-menu">
 
-                                @if (Auth::user()->type == 'secretaria' || Auth::user()->type == 'administrador')
+                                @if ($type == 'secretaria' || $type == 'administrador')
                                 <li>
                                     <a class="dropdown-item" href="{{ route('register') }}">{{ __('Cadastrar Usuário') }}</a>
                                 </li>
                                 @endif
 
-                                @if (Auth::user()->type == 'aluno')
+                                @if ($type == 'aluno')
                                 <li>
                                     <a class="dropdown-item" href="{{ route('aluno.edit', Auth::user()->id) }}">
                                         {{ __('Atualizar Dados') }}
@@ -87,9 +91,9 @@
                                 </li>
                                 @endif
 
-                                @if (Auth::user()->type == 'professor')
+                                @if ($type == 'professor')
                                 <li>
-                                    <a class="dropdown-item" href="{{ route('professor.edit', Auth::user()->id) }}">
+                                    <a class="dropdown-item" href="{{ route('professor.edit', $id) }}">
                                         {{ __('Atualizar Dados') }}
                                     </a>
                                 </li>

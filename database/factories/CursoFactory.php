@@ -18,8 +18,8 @@ class CursoFactory extends Factory
     {
         return [
             'nome' => 'Matéria',
-            'descricao_curta' => fake()->text($maxNbChars = 25) ,
-            'descricao_completa' => fake()->text($maxNbChars = 200),
+            'descricaoCurta' => fake()->text($maxNbChars = 25) ,
+            'descricaoCompleta' => fake()->text($maxNbChars = 200),
             'min' => 10,
             'max' => 50,
         ];

@@ -16,23 +16,18 @@ return new class extends Migration
         Schema::create('cursos', function (Blueprint $table) {
             $table->id();
             $table->string('nome');
-            $table->text('descricao_completa');
-            $table->tinyText('descricao_curta');
+            $table->text('descricaoCompleta');
+            $table->tinyText('descricaoCurta');
             $table->integer('matriculas')->default(0);
             $table->integer('max');
             $table->integer('min');
-            $table->foreignId('aluno_id')
-                ->nullable()
-                ->constrained('alunos')
-                ->onDelete('CASCADE')
-                ->onUpdate('CASCADE');
             $table->foreignId('professor_id')
                 ->nullable()
                 ->constrained('professores')
                 ->onDelete('CASCADE')
                 ->onUpdate('CASCADE');
             $table->string('file_path')->nullable();
-            $table->boolean('aberto_matricula');
+            $table->boolean('abertoMatricula');
             $table->timestamps();
         });
     }

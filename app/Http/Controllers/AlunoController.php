@@ -80,6 +80,7 @@ class AlunoController extends Controller
     public function edit(aluno $aluno)
     {
         $aluno = Aluno::find(Auth::user()->id);
+        $curso = $aluno->curso;
         
         $filmes = array();
 
@@ -156,31 +157,53 @@ class AlunoController extends Controller
             return back()->with("error", "Old Password Doesn't match!");
         }
 
-
-           #Match The Old Password
-           if(!Hash::check($request->old_password, auth()->user()->password)){
-               return back()->with("error", "Old Password Doesn't match!");
-           }
-
-
-           #Update the new Password
-            User::whereId(auth()->user()->id)->update([
-               'password' => Hash::make($request->new_password)
-           ]);
-
-           return back()->with("status", "Password changed successfully!");
-        }
-        
-    public function show (Aluno $aluno){
-           $aluno -> cursos()->create([
-            'nome'=>'Engenharia do Amor',
-            'descricao_completa'=>'Quod illum sed mollitia tempora cupiditate. Non quia alias quo ducimus maiores ullam.',
-            'descricao_curta' => 'ghjahglahglçfhaglçahgfhgahglfahglfhlgalhgljfhg',
-            'matriculas' => 0,
-            'max'=> 30,
-            'min' =>  10,
+        #Update the new Password
+        User::whereId(auth()->user()->id)->update([
+            'password' => Hash::make($request->new_password)
         ]);
 
-        dd($aluno->cursos);
+        return back()->with("status", "Password changed successfully!");
+    }
+        
+    public function show (User $user)
+    {   
+        $user = User::find(Auth::user()->id);
+        // $user->aluno()->create([
+        //     'nome'=>'Gabriel',
+        //     'CPF'=>'45789654855',
+        //     'endereco'=>'Rua da Vida, 237',
+        //     'ultimoAcesso'=>now(),
+        // ]);
+
+        $aluno = $user->aluno;
+
+        // $aluno -> cursos()->create([
+        //     'nome'=>'Engenharia do Amor',
+        //     'descricao_completa'=>'Quod illum sed mollitia tempora cupiditate. Non quia alias quo ducimus maiores ullam.',
+        //     'descricao_curta' => 'ghjahglahglçfhaglçahgfhgahglfahglfhlgalhgljfhg',
+        //     'matriculas' => 0,
+        //     'max'=> 30,
+        //     'min' =>  10,
+        //     'aberto_matricula' => true,
+        // ]);
+
+        $cursos = Curso::all();
+        return view('aluno.cursos', compact('cursos'));
+    }
+
+    public function matricula(Aluno $aluno, Curso $curso)
+    {   
+        $cursos = Curso::find($curso->id);
+        $aluno->cursos()->create([
+            'nome'=>'Engenharia do Amor',
+        //     'descricao_completa'=>'Quod illum sed mollitia tempora cupiditate. Non quia alias quo ducimus maiores ullam.',
+        //     'descricao_curta' => 'ghjahglahglçfhaglçahgfhgahglfahglfhlgalhgljfhg',
+        //     'matriculas' => 0,
+        //     'max'=> 30,
+        //     'min' =>  10,
+        //     'aberto_matricula' => true,$cursos
+        ]);
+        $aluno->cursos;
+        return back()->with("status", "Matrícula realizada com sucesso!");
     }
 }

@@ -17,11 +17,11 @@ return new class extends Migration
             $table->id();
             $table->string('nome');
             $table->string('CPF')->unique();
-            // $table->string('endereco');
+            $table->string('endereco');
             $table->string('filme')->nullable();
             $table->foreignId('user_id')
                 ->nullable()
-                ->constrained()
+                ->constrained('users')
                 ->onDelete('CASCADE')
                 ->onUpdate('CASCADE');
             $table->timestampTz('ultimoAcesso')->nullable();

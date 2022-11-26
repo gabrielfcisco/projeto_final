@@ -31,13 +31,15 @@ Lista de Rotas de Alunos
 --------------------------------------------*/
 Route::middleware(['auth', 'user-acess:aluno'])->group(function () {
   
-    Route::get('/home', [HomeController::class, 'index'])->name('home');
+    Route::get('/home', [HomeController::class, 'index'])->name('aluno.home');
     Route::get('/', function () {
         return view('welcome');
     })->name('aluno.cadastro');
     Route::get('/aluno/{id}/edit', [AlunoController::class, 'edit']);
     Route::get('/change-password', [AlunoController::class, 'changePassword'])->name('change-password');
     Route::post('/update-password', [AlunoController::class, 'updatePassword'])->name('update-password');
+    Route::get('/aluno/cursos/{id}', [AlunoController::class, 'show'])->name('cursos.show');
+    Route::get('/matricula/{aluno}/{curso}', [AlunoController::class, 'matricula'])->name('cursos.matricula');
 });
 
 /*------------------------------------------
