@@ -187,13 +187,23 @@ class AlunoController extends Controller
         //     'aberto_matricula' => true,
         // ]);
 
-        $cursos = $aluno->cursos;
+        $cursos = Curso::all();
         return view('aluno.cursos', compact('cursos'));
     }
 
-    public function matricula(Aluno $aluno, Curso $curso){
-        Curso::whereId($curso->id)->update([
-            
-        ])
+    public function matricula(Aluno $aluno, Curso $curso)
+    {   
+        $cursos = Curso::find($curso->id);
+        $aluno->cursos()->create([
+            'nome'=>'Engenharia do Amor',
+        //     'descricao_completa'=>'Quod illum sed mollitia tempora cupiditate. Non quia alias quo ducimus maiores ullam.',
+        //     'descricao_curta' => 'ghjahglahglçfhaglçahgfhgahglfahglfhlgalhgljfhg',
+        //     'matriculas' => 0,
+        //     'max'=> 30,
+        //     'min' =>  10,
+        //     'aberto_matricula' => true,$cursos
+        ]);
+        $aluno->cursos;
+        return back()->with("status", "Matrícula realizada com sucesso!");
     }
 }

@@ -41,7 +41,9 @@
 
                     </ul>
                     @php
-                    $type = Auth::user()->type
+                    $type="";
+                    if(Auth::user() != null)
+                    $type = Auth::user()->type;
                     @endphp
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ms-auto">
@@ -69,12 +71,12 @@
 
                                 @if ($type == 'aluno')
                                 <li>
-                                    <a class="dropdown-item" href="{{ route('aluno.edit', $id) }}">
+                                    <a class="dropdown-item" href="{{ route('aluno.edit', Auth::user()->id) }}">
                                         {{ __('Atualizar Dados') }}
                                     </a>
                                 </li>
                                 <li>
-                                    <a class="dropdown-item" href="{{ route('change-password', $id) }}">
+                                    <a class="dropdown-item" href="{{ route('change-password', Auth::user()->id) }}">
                                         {{ __('Troca de Senha') }}
                                     </a>
                                 </li>
