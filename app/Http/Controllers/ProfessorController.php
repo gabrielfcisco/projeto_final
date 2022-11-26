@@ -32,6 +32,11 @@ class ProfessorController extends Controller
     }
 
     public function showCursos(Professor $professor){
-        return view('professor.cursos', compact('professor'));
+        $cursos = Curso::where('professor_id', '=', Auth::user()->professor->id)->get();
+        return view('professor.cursos', compact('professor', 'cursos'));
+    }
+
+    public function showCurso(Professor $professor, $curso){
+        return view('professor.showCurso', compact('curso'));
     }
 }

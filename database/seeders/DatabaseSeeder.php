@@ -7,6 +7,7 @@ namespace Database\Seeders;
 use App\Models\Aluno;
 use App\Models\Curso;
 use App\Models\Professor;
+use App\Models\User;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -18,43 +19,60 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        \App\Models\User::factory(10)->create();
+        $users = [
+            [
+                'email'=>'Xastre@exemple.com',
+                'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi',
+                'type' => 1,
+            ],
+            [
+                'email'=>'Miro@exemple.com',
+                'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi',
+                'type' => 1,
+            ],
+            [
+                'email'=>'Pannain@exemple.com',
+                'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi',
+                'type' => 1,
+            ],
+        ];
+
+        foreach ($users as $key => $user) {
+            User::create($user);
+        }
 
         Aluno::factory(10)->create();
 
-        // $cursos = [
-        //     [
-        //        'nome'=>'Engenharia de Computação',
-        //        'descricao_completa'=>'Quod illum sed mollitia tempora cupiditate. Non quia alias quo ducimus maiores ullam.',
-        //        'descricao_curta' => 'ghjahglahglçfhaglçahgfhgahglfahglfhlgalhgljfhg',
-        //        'matriculas' => 0,
-        //        'max'=> 30,
-        //        'min' =>  10,
-        //        'professor_id' => 1,
-        //     ],
-        //     [
-        //         'nome'=>'Engenharia Civil',
-        //         'descricao_completa'=>'Quod illum sed mollitia tempora cupiditate. Non quia alias quo ducimus maiores ullam.',
-        //         'descricao_curta' => 'ghjahglahglçfhaglçahgfhgahglfahglfhlgalhgljfhg',
-        //         'matriculas' => 0,
-        //         'max'=> 30,
-        //         'min' =>  10,
-        //         'professor_id' => 1,
-        //     ],
-        //     [
-        //         'nome'=>'Engenharia de Química',
-        //         'descricao_completa'=>'Quod illum sed mollitia tempora cupiditate. Non quia alias quo ducimus maiores ullam.',
-        //         'descricao_curta' => 'ghjahglahglçfhaglçahgfhgahglfahglfhlgalhgljfhg',
-        //         'matriculas' => 0,
-        //         'max'=> 30,
-        //         'min' =>  10,
-        //         'professor_id' => 1,
-        //     ],
-        // ];
+        $cursos = [
+            [
+               'nome'=>'Engenharia de Computação',
+               'descricao_completa'=>'Quod illum sed mollitia tempora cupiditate. Non quia alias quo ducimus maiores ullam.',
+               'descricao_curta' => 'ghjahglahglçfhaglçahgfhgahglfahglfhlgalhgljfhg',
+               'matriculas' => 0,
+               'max'=> 30,
+               'min' =>  10,
+            ],
+            [
+                'nome'=>'Engenharia Civil',
+                'descricao_completa'=>'Quod illum sed mollitia tempora cupiditate. Non quia alias quo ducimus maiores ullam.',
+                'descricao_curta' => 'ghjahglahglçfhaglçahgfhgahglfahglfhlgalhgljfhg',
+                'matriculas' => 0,
+                'max'=> 30,
+                'min' =>  10,
+            ],
+            [
+                'nome'=>'Engenharia de Química',
+                'descricao_completa'=>'Quod illum sed mollitia tempora cupiditate. Non quia alias quo ducimus maiores ullam.',
+                'descricao_curta' => 'ghjahglahglçfhaglçahgfhgahglfahglfhlgalhgljfhg',
+                'matriculas' => 0,
+                'max'=> 30,
+                'min' =>  10,
+            ],
+        ];
 
-        // foreach ($cursos as $key => $user) {
-        //     Curso::create($user);
-        // }
+        foreach ($cursos as $key => $user) {
+            Curso::create($user);
+        }
 
         $professores = [
             [

@@ -32,7 +32,7 @@ return new class extends Migration
                 ->onDelete('CASCADE')
                 ->onUpdate('CASCADE');
             $table->string('file_path')->nullable();
-            $table->boolean('aberto_matricula');
+            $table->boolean('aberto_matricula')->default(0);
             $table->timestamps();
         });
     }

@@ -23,7 +23,6 @@
 
     {{-- @vite(['resources/sass/app.scss', 'resources/js/app.js']) --}}
 </head>
-
 <body>
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
@@ -54,15 +53,16 @@
                         @else
                         <li class="nav-item dropdown">
                             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                
+                                @if (Auth::user()->type == 'secretaria' || Auth::user()->type == 'administrador')
+                                    {{ __('Secretaria') }}
+                                @endif
+
                                 @if (Auth::user()->type == 'aluno')
-                                    {{ Auth::user()->aluno->nome }}
-                                @elseif (Auth::user()->type == 'professor')
-                                    {{ Auth::user()->professor->nome }}
-                                @elseif (Auth::user()->type == 'secretaria')
-                                    Secretaria
-                                @elseif (Auth::user()->type == 'administrador')
-                                    Administrador
+                                    {{Auth::user()->aluno->nome}}
+                                @endif
+
+                                @if (Auth::user()->type == 'professor')
+                                    {{Auth::user()->professor->Nome}}
                                 @endif
                             </a>
 
