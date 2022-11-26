@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -20,6 +21,8 @@ class AlunoFactory extends Factory
             'nome' => fake()->name(),
             'CPF' => fake()->unique()->numerify('###########'),
             'ultimoAcesso' => now(),
+            'endereco' => fake()->address(),
+            'user_id' => User::inRandomOrder()->first()->id,
         ];
     }
 }

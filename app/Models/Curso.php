@@ -16,13 +16,13 @@ class Curso extends Model
      */
     protected $fillable = [
         'nome',
-        'descricao_completa',
-        'descricao_curta',
+        'descricaoCompleta',
+        'descricaoCurta',
         'max',
         'min',
         'professor_id',
-        'aluno_id',
         'file_path',
+        'abertoMatricula',
     ];
 
     public function alunos(){

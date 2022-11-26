@@ -17,10 +17,10 @@ return new class extends Migration
             $table->id();
             $table->string('Nome');
             $table->string('CPF');
-            $table->timestamp('Ultimo_acesso')->nullable();
+            $table->timestamp('ultimoAcesso')->nullable();
             $table->foreignId('user_id')
                 ->nullable()
-                ->constrained()
+                ->constrained('users')
                 ->onDelete('CASCADE')
                 ->onUpdate('CASCADE');
             $table->rememberToken();

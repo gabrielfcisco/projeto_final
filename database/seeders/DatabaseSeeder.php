@@ -19,6 +19,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+
         $users = [
             [
                 'email'=>'Xastre@exemple.com',
@@ -41,7 +42,10 @@ class DatabaseSeeder extends Seeder
             User::create($user);
         }
 
-        Aluno::factory(10)->create();
+        // \App\Models\User::factory(10)->create();
+
+
+        // Aluno::factory(10)->create();
 
         $cursos = [
             [
@@ -75,23 +79,61 @@ class DatabaseSeeder extends Seeder
         }
 
         $professores = [
+
             [
-               'nome'=>'Xastre',
-               'CPF'=> '45863257852',
+               'nome'=>'Engenharia de Computação',
+               'descricao_completa'=>'Quod illum sed mollitia tempora cupiditate. Non quia alias quo ducimus maiores ullam.',
+               'descricao_curta' => 'ghjahglahglçfhaglçahgfhgahglfahglfhlgalhgljfhg',
+               'matriculas' => 0,
+               'max'=> 30,
+               'min' =>  10,
+               'professor_id' => 1,
+               'aberto_matricula' => true,
             ],
             [
-                'nome'=>'Miro',
-                'CPF'=> '97854123658',
+                'nome'=>'Engenharia Civil',
+                'descricao_completa'=>'Quod illum sed mollitia tempora cupiditate. Non quia alias quo ducimus maiores ullam.',
+                'descricao_curta' => 'ghjahglahglçfhaglçahgfhgahglfahglfhlgalhgljfhg',
+                'matriculas' => 0,
+                'max'=> 30,
+                'min' =>  10,
+                'professor_id' => 1,
+                'aberto_matricula' => false,
             ],
             [
-                'nome'=>'Pannain',
-                'CPF'=> '45321578965',
+                'nome'=>'Engenharia de Química',
+                'descricao_completa'=>'Quod illum sed mollitia tempora cupiditate. Non quia alias quo ducimus maiores ullam.',
+                'descricao_curta' => 'ghjahglahglçfhaglçahgfhgahglfahglfhlgalhgljfhg',
+                'matriculas' => 0,
+                'max'=> 30,
+                'min' =>  10,
+                'professor_id' => 1,
+                'aberto_matricula' => true,
             ],
         ];
 
-        foreach ($professores as $key => $user) {
-            Professor::create($user);
+        foreach ($cursos as $key => $user) {
+            Curso::create($user);
         }
+
+        // $professores = [
+        //     [
+        //        'nome'=>'Xastre',
+        //        'CPF'=> '45863257852',
+        //     ],
+        //     [
+        //         'nome'=>'Miro',
+        //         'CPF'=> '97854123658',
+        //     ],
+        //     [
+        //         'nome'=>'Pannain',
+        //         'CPF'=> '45321578965',
+        //     ],
+        // ];
+
+        // foreach ($professores as $key => $user) {
+        //     Professor::create($user);
+        // }
 
         // \App\Models\User::factory()->create([
         //     'name' => 'Test User',

@@ -14,7 +14,7 @@ class Professor extends Model
     protected $fillable = [
     'Nome',
     'CPF',
-    'Ultimo_acesso',
+    'ultimoAcesso',
     ];
 
     protected $casts = [

@@ -19,6 +19,7 @@ class Aluno extends Model
         'CPF',
         'filme',
         'ultimoAcesso',
+        'endereco',
         'materias',
     ];
 
