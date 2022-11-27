@@ -39,6 +39,7 @@ Route::middleware(['auth', 'user-acess:aluno'])->group(function () {
     Route::get('/change-password', [AlunoController::class, 'changePassword'])->name('change-password');
     Route::post('/update-password', [AlunoController::class, 'updatePassword'])->name('update-password');
     Route::get('/aluno/cursos/{id}', [AlunoController::class, 'show'])->name('cursos.show');
+    Route::get('/aluno/{aluno}/matriculas', [AlunoController::class, 'cursosMatriculados'])->name('cursos.matriculados');
     Route::get('/matricula/{aluno}/{curso}', [AlunoController::class, 'matricula'])->name('cursos.matricula');
 });
 

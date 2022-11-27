@@ -20,29 +20,29 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
 
-        $users = [
-            [
-                'email'=>'Xastre@exemple.com',
-                'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi',
-                'type' => 1,
-            ],
-            [
-                'email'=>'Miro@exemple.com',
-                'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi',
-                'type' => 1,
-            ],
-            [
-                'email'=>'Pannain@exemple.com',
-                'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi',
-                'type' => 1,
-            ],
-        ];
+        // $users = [
+        //     [
+        //         'email'=>'Xastre@exemple.com',
+        //         'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi',
+        //         'type' => 1,
+        //     ],
+        //     [
+        //         'email'=>'Miro@exemple.com',
+        //         'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi',
+        //         'type' => 1,
+        //     ],
+        //     [
+        //         'email'=>'Pannain@exemple.com',
+        //         'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi',
+        //         'type' => 1,
+        //     ],
+        // ];
 
-        foreach ($users as $key => $user) {
-            User::create($user);
-        }
+        // foreach ($users as $key => $user) {
+        //     User::create($user);
+        // }
 
-        // \App\Models\User::factory(10)->create();
+\App\Models\User::factory(10)->create();
 
 
         // Aluno::factory(10)->create();
@@ -50,24 +50,24 @@ class DatabaseSeeder extends Seeder
         $cursos = [
             [
                'nome'=>'Engenharia de Computação',
-               'descricao_completa'=>'Quod illum sed mollitia tempora cupiditate. Non quia alias quo ducimus maiores ullam.',
-               'descricao_curta' => 'ghjahglahglçfhaglçahgfhgahglfahglfhlgalhgljfhg',
+               'descricaoCompleta'=>'Quod illum sed mollitia tempora cupiditate. Non quia alias quo ducimus maiores ullam.',
+               'descricaoCurta' => 'ghjahglahglçfhaglçahgfhgahglfahglfhlgalhgljfhg',
                'matriculas' => 0,
                'max'=> 30,
                'min' =>  10,
             ],
             [
                 'nome'=>'Engenharia Civil',
-                'descricao_completa'=>'Quod illum sed mollitia tempora cupiditate. Non quia alias quo ducimus maiores ullam.',
-                'descricao_curta' => 'ghjahglahglçfhaglçahgfhgahglfahglfhlgalhgljfhg',
+                'descricaoCompleta'=>'Quod illum sed mollitia tempora cupiditate. Non quia alias quo ducimus maiores ullam.',
+                'descricaoCurta' => 'ghjahglahglçfhaglçahgfhgahglfahglfhlgalhgljfhg',
                 'matriculas' => 0,
                 'max'=> 30,
                 'min' =>  10,
             ],
             [
                 'nome'=>'Engenharia de Química',
-                'descricao_completa'=>'Quod illum sed mollitia tempora cupiditate. Non quia alias quo ducimus maiores ullam.',
-                'descricao_curta' => 'ghjahglahglçfhaglçahgfhgahglfahglfhlgalhgljfhg',
+                'descricaoCompleta'=>'Quod illum sed mollitia tempora cupiditate. Non quia alias quo ducimus maiores ullam.',
+                'descricaoCurta' => 'ghjahglahglçfhaglçahgfhgahglfahglfhlgalhgljfhg',
                 'matriculas' => 0,
                 'max'=> 30,
                 'min' =>  10,
@@ -82,8 +82,8 @@ class DatabaseSeeder extends Seeder
 
             [
                'nome'=>'Engenharia de Computação',
-               'descricao_completa'=>'Quod illum sed mollitia tempora cupiditate. Non quia alias quo ducimus maiores ullam.',
-               'descricao_curta' => 'ghjahglahglçfhaglçahgfhgahglfahglfhlgalhgljfhg',
+               'descricaoCompleta'=>'Quod illum sed mollitia tempora cupiditate. Non quia alias quo ducimus maiores ullam.',
+               'descricaoCurta' => 'ghjahglahglçfhaglçahgfhgahglfahglfhlgalhgljfhg',
                'matriculas' => 0,
                'max'=> 30,
                'min' =>  10,
@@ -92,8 +92,8 @@ class DatabaseSeeder extends Seeder
             ],
             [
                 'nome'=>'Engenharia Civil',
-                'descricao_completa'=>'Quod illum sed mollitia tempora cupiditate. Non quia alias quo ducimus maiores ullam.',
-                'descricao_curta' => 'ghjahglahglçfhaglçahgfhgahglfahglfhlgalhgljfhg',
+                'descricaoCompleta'=>'Quod illum sed mollitia tempora cupiditate. Non quia alias quo ducimus maiores ullam.',
+                'descricaoCurta' => 'ghjahglahglçfhaglçahgfhgahglfahglfhlgalhgljfhg',
                 'matriculas' => 0,
                 'max'=> 30,
                 'min' =>  10,
@@ -102,8 +102,8 @@ class DatabaseSeeder extends Seeder
             ],
             [
                 'nome'=>'Engenharia de Química',
-                'descricao_completa'=>'Quod illum sed mollitia tempora cupiditate. Non quia alias quo ducimus maiores ullam.',
-                'descricao_curta' => 'ghjahglahglçfhaglçahgfhgahglfahglfhlgalhgljfhg',
+                'descricaoCompleta'=>'Quod illum sed mollitia tempora cupiditate. Non quia alias quo ducimus maiores ullam.',
+                'descricaoCurta' => 'ghjahglahglçfhaglçahgfhgahglfahglfhlgalhgljfhg',
                 'matriculas' => 0,
                 'max'=> 30,
                 'min' =>  10,

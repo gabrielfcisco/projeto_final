@@ -24,7 +24,7 @@ class Aluno extends Model
     ];
 
     public function cursos(){
-        return $this->hasMany(Curso::class);
+        return $this->belongsToMany(Curso::class);
     }
 
     public function user(){

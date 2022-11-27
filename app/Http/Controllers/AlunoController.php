@@ -167,15 +167,18 @@ class AlunoController extends Controller
         
     public function show (User $user)
     {   
-        $user = User::find(Auth::user()->id);
+        // $user = User::find(Auth::user()->id);
         // $user->aluno()->create([
         //     'nome'=>'Gabriel',
         //     'CPF'=>'45789654855',
         //     'endereco'=>'Rua da Vida, 237',
         //     'ultimoAcesso'=>now(),
         // ]);
-
-        $aluno = $user->aluno;
+        // $aluno = $user->aluno;
+        // // dd($aluno);
+        // // $aluno->cursos()->attach(1);
+        // $aluno->load('cursos');
+        // return $aluno;
 
         // $aluno -> cursos()->create([
         //     'nome'=>'Engenharia do Amor',
@@ -193,17 +196,20 @@ class AlunoController extends Controller
 
     public function matricula(Aluno $aluno, Curso $curso)
     {   
-        $cursos = Curso::find($curso->id);
-        $aluno->cursos()->create([
-            'nome'=>'Engenharia do Amor',
-        //     'descricao_completa'=>'Quod illum sed mollitia tempora cupiditate. Non quia alias quo ducimus maiores ullam.',
-        //     'descricao_curta' => 'ghjahglahglçfhaglçahgfhgahglfahglfhlgalhgljfhg',
-        //     'matriculas' => 0,
-        //     'max'=> 30,
-        //     'min' =>  10,
-        //     'aberto_matricula' => true,$cursos
-        ]);
-        $aluno->cursos;
+        $cursos = $aluno->cursos;
+        foreach($cursos as $c){
+            if($c->id == $curso->id){
+                return back()->with("error", "Você já está matriculado no curso");
+            }
+        }
+        $aluno->cursos()->attach($curso->id);
         return back()->with("status", "Matrícula realizada com sucesso!");
+
+    }
+
+    public function cursosMatriculados(Aluno $aluno)
+    {
+        $cursos = $aluno->cursos;
+        return view('aluno.cursosMatriculados', compact('cursos'));
     }
 }

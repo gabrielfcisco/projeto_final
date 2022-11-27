@@ -31,7 +31,7 @@
                             <div class="card-body">
                                 <h5 class="card-title">Cursos Matriculados</h5>
                                 <p class="card-text">Aqui você pode ver todos os cursos nos quais você está matriculado, verificar sua nota e também trancar sua matrícula</p>
-                                <a href="{{route('cursos.show', Auth::user()->id)}}" class="btn btn-primary">Veja suas disciplinas</a>
+                                <a href="{{route('cursos.matriculados', Auth::user()->aluno->id)}}" class="btn btn-primary">Veja suas disciplinas</a>
                             </div>
                         </div>
                     </div>
