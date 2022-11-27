@@ -59,7 +59,7 @@
 			  </div>
 			<div class="col-md-6">
 				<label for="Filmes" class="form-label">Filmes</label><br>
-				<select class="form-select" name="filmes" multiple="multiple" id="Filmes" value="{{$aluno->filmes}}">
+				<select class="form-select" name="filmes" id="Filmes" value="{{$aluno->filmes}}">
 					@if(count($filmes) > 0)
 					@foreach($filmes as $filme)
 					<option value="{{ $filme['nome'] }}">{{ $filme['nome'] }}</option>

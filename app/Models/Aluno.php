@@ -20,6 +20,11 @@ class Aluno extends Model
         'filme',
         'ultimoAcesso',
         'endereco',
+        'cidade',
+        'CEP',
+        'estado',
+        'complemento',
+        'user_id',
         'materias',
     ];
 

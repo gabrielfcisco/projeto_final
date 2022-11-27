@@ -11,6 +11,8 @@ class aluno_curso extends Model
 
     protected $table = 'aluno_curso';
     protected $fillable = [
+        'aluno_id',
+        'curso_id',
         'nota',
     ];
 }

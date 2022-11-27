@@ -12,20 +12,28 @@ class Professor extends Model
     protected $table = 'professores';
 
     protected $fillable = [
-    'Nome',
-    'CPF',
-    'ultimoAcesso',
+        'Nome',
+        'CPF',
+        'endereco',
+        'cidade',
+        'CEP',
+        'estado',
+        'complemento',
+        'user_id',
+        'ultimoAcesso',
     ];
 
     protected $casts = [
         'Utlimo_acesso' => 'datetime',
     ];
 
-    public function cursos(){
+    public function cursos()
+    {
         return $this->hasMany(Curso::class);
     }
-    
-    public function user(){
+
+    public function user()
+    {
         return $this->belongsTo(User::class);
     }
 }
