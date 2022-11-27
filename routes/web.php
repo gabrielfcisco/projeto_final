@@ -89,7 +89,9 @@ Route::middleware(['auth', 'user-acess:secretaria'])->group(function () {
 
     Route::get('/secretaria/cursos', [SecretariaController::class, 'secretariaCursos'])->name('secretaria.cursos');
     Route::get('/secretaria/cursos/abrirmatricula/{id}', [SecretariaController::class, 'abrirMatricula'])->name('secretaria.matricula');
-
+    Route::get('/secretaria/aluno', [SecretariaController::class, 'showAlunos'])->name('secretaria.aluno');
+    Route::get('/aluno/{id}/edit', [AlunoController::class, 'edit']);
+    Route::put('/aluno/{aluno}/update', [AlunoController::class, 'update'])->name('aluno.updating');
     Route::resources([
         'aluno' => AlunoController::class,
         'professor' => ProfessorController::class,

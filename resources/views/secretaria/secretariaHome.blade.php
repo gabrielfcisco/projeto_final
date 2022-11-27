@@ -11,6 +11,14 @@
                 <a class="btn btn-outline-dark" href='/secretaria/cursos'>Gerenciar Cursos</a>
             </div>
         </div>
+        <div class="card mb-3">
+            <img src="/cursos.png" class="card-img-top" alt="...">
+            <div class="card-body">
+                <h5 class="card-title">Alunos</h5>
+                <p class="card-text">Aqui você pode ver todos os alunos disponíveis, criar novos, alterar e realizar suas matrículas</p>
+                <a class="btn btn-outline-dark" href="{{route('secretaria.aluno')}}">Gerenciar Alunos</a>
+            </div>
+        </div>
     </div>
 </div>
 @endsection
