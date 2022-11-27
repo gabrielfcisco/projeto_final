@@ -3,6 +3,7 @@
 use App\Http\Controllers\AlunoController;
 use App\Http\Controllers\CursoController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\SecretariaController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfessorController;
 use Illuminate\Support\Facades\Auth;
@@ -52,14 +53,17 @@ Lista de Rotas de Professores
 Route::middleware(['auth', 'user-acess:professor'])->group(function () {
   
     Route::get('/professor/home', [HomeController::class, 'professorHome'])->name('professor.home');
+
     Route::get('/professor/{id}/cursos', [ProfessorController::class, 'showCursos'])->name('professor.cursos');
     Route::get('/professor/{professor}/cursos/{curso}', [ProfessorController::class, 'showCurso'])->name('professor.showCurso');
     Route::post('professor/{aluno}/{curso}', [ProfessorController::class, 'atribuirNota'])->name('professor.notas'); 
+
+    Route::get('/professor/change-password', [ProfessorController::class, 'changePassword'])->name('professor.change-password');
+    Route::post('/professor/update-password', [ProfessorController::class, 'updatePassword'])->name('professor.update-password');
+
     Route::get('/', function(){
         return view('welcome');
     })->name('professor.cadastro');
-    // Route::get('/professor/{id}/edit', [ProfessorController::class, 'edit'])->name('professor.edit');
-    // Route::get('/change-password', [ProfessorController::class, 'changePassword'])->name('change-password');, 
 });
   
 /*------------------------------------------
@@ -80,6 +84,10 @@ Lista de Rotas de Secretária
 Route::middleware(['auth', 'user-acess:secretaria'])->group(function () {
   
     Route::get('/secretaria/home', [HomeController::class, 'secretariaHome'])->name('secretaria.home');
+
+    Route::get('/secretaria/cursos', [SecretariaController::class, 'secretariaCursos'])->name('secretaria.cursos');
+    Route::get('/secretaria/cursos/abrirmatricula/{id}', [SecretariaController::class, 'abrirMatricula'])->name('secretaria.matricula');
+
     Route::resources([
         'aluno' => AlunoController::class,
         'professor' => ProfessorController::class,

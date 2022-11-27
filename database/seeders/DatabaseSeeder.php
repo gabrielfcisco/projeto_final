@@ -46,6 +46,16 @@ class DatabaseSeeder extends Seeder
                 'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi',
                 'type' => 0,
             ],
+            [
+                'email'=>'secretaria@adm.com',
+                'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi',
+                'type' => 2,
+            ],
+            [
+                'email'=>'admin@adm.com',
+                'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi',
+                'type' => 3,
+            ],
         ];
 
         foreach ($users as $key => $user) {
@@ -143,6 +153,23 @@ class DatabaseSeeder extends Seeder
 
         foreach ($professores as $key => $user) {
             Professor::create($user);
+        }
+
+        $alunos = [
+            [
+                'nome'=>'Eduardo',
+                'CPF' => '12345678910',
+                'endereco' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. ',
+            ],
+            [
+                'nome'=>'Aluno',
+                'CPF' => '01987654321',
+                'endereco' => 'Vestibulum nulla maximus quis. Aenean semper congue',
+            ],
+        ];
+
+        foreach ($alunos as $key => $aluno) {
+            Aluno::create($aluno);
         }
 
         // \App\Models\User::factory()->create([
