@@ -27,6 +27,7 @@ class Aluno extends Model
         'user_id',
         'materias',
     ];
+    protected $with = ['user'];
 
     public function cursos(){
         return $this->belongsToMany(Curso::class);

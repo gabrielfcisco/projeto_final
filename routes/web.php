@@ -89,6 +89,7 @@ Route::middleware(['auth', 'user-acess:secretaria'])->group(function () {
 
     Route::get('/secretaria/cursos', [SecretariaController::class, 'secretariaCursos'])->name('secretaria.cursos');
     Route::get('/secretaria/cursos/abrirmatricula/{id}', [SecretariaController::class, 'abrirMatricula'])->name('secretaria.matricula');
+<<<<<<< HEAD
     Route::get('/secretaria/cursos/adicionar', [SecretariaController::class, 'adicionarCurso_page'])->name('secretaria.adicionarCurso_page');
     Route::post('/secretaria/cursos/add', [SecretariaController::class, 'adicionarCurso'])->name('secretaria.adicionarCurso');
 
@@ -96,6 +97,11 @@ Route::middleware(['auth', 'user-acess:secretaria'])->group(function () {
     Route::post('/secretaria/{id}/editCurso', [SecretariaController::class, 'editCurso'])->name('secretaria.editCurso');
     Route::get('/secretaria/{id}/delCurso', [SecretariaController::class, 'delCurso'])->name('secretaria.delCurso'); 
 
+=======
+    Route::get('/secretaria/aluno', [SecretariaController::class, 'showAlunos'])->name('secretaria.aluno');
+    Route::get('/aluno/{id}/edit', [AlunoController::class, 'edit']);
+    Route::put('/aluno/{aluno}/update', [AlunoController::class, 'update'])->name('aluno.updating');
+>>>>>>> a0c5e9b9a549f67c85ab1c5873bf847f5b80f1bd
     Route::resources([
         'aluno' => AlunoController::class,
         'professor' => ProfessorController::class,

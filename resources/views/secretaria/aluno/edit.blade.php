@@ -19,7 +19,7 @@
 			{{ session('error') }}
 		</div>
 	@endif
-		<form class="row g-3" method="POST" action="{{route('aluno.updating', Auth::user()->id)}}">
+		<form class="row g-3" method="POST" action="{{route('aluno.updating', $aluno->id)}}">
 			@csrf
 			@method('PUT')
 			<div class="col-12">
