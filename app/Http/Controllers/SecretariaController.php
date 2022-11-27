@@ -57,7 +57,8 @@ class SecretariaController extends Controller
 
     public function editCurso_page($curso_id){
         $curso = Curso::find($curso_id);
-        return view('secretaria.editCurso', compact('curso'));
+        $alunos = $curso->alunos;
+        return view('secretaria.editCurso', compact('curso', 'alunos'));
     }
 
     public function editCurso(Request $request, $curso_id){

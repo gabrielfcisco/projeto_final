@@ -49,6 +49,43 @@
 			    <a href="{{route('secretaria.delCurso', $curso->id)}}" class="btn btn-danger">Deletar Curso</a>
 			</div>
 		</form>
+		<div class="row">
+			<div class="col-12">
+				<table class="table">
+					<th>
+						<tr>
+							<th scope="col">#</th>
+							<th scope="col">Nome</th>
+							<th scope="col">Email</th>
+							<th scope="col">Ação</th>
+						</tr>
+					</th>
+					<tbody>
+						@if($alunos->count() > 0)
+						@foreach($alunos as $aluno)
+						<tr>
+							<td>{{$loop->index + 1}}</td>
+							<td>{{$aluno->nome}}</td>
+							<td>{{$aluno->user->email}}</td>
+							<td>
+								<form action="{{ route('aluno.destroy', $aluno->id) }}" method="POST">
+									<a class="btn btn-success" href="{{ route('cursos.matricula', ['aluno' => $aluno->id, 'curso' => $curso->id]) }}">Editar</a>
+									@csrf
+									@method('DELETE')
+									<button type="submit" class="btn btn-danger">Excluir</button>
+								</form>
+							</td>
+						</tr>
+						@endforeach
+						@else
+						<tr>
+							<td colspan="4">Dados não encontrados!</td>
+						</tr>
+						@endif
+					</tbody>
+				</table>
+			</div>
+		</div>
 </div>
 </div>
 @endsection
