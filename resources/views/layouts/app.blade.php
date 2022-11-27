@@ -92,11 +92,16 @@
                                 @endif
 
                                 @if ($type == 'professor')
-                                <li>
-                                    <a class="dropdown-item" href="{{ route('professor.edit', $id) }}">
+                                {{-- <li>
+                                    <a class="dropdown-item" href="{{ route('professor.edit', Auth::user()->id) }}">
                                         {{ __('Atualizar Dados') }}
                                     </a>
                                 </li>
+                                <li>
+                                    <a class="dropdown-item" href="{{ route('change-password', Auth::user()->id) }}">
+                                        {{ __('Troca de Senha') }}
+                                    </a>
+                                </li> --}}
 
                                 @endif
                                 <li><a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();

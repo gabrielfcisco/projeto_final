@@ -54,9 +54,12 @@ Route::middleware(['auth', 'user-acess:professor'])->group(function () {
     Route::get('/professor/home', [HomeController::class, 'professorHome'])->name('professor.home');
     Route::get('/professor/{id}/cursos', [ProfessorController::class, 'showCursos'])->name('professor.cursos');
     Route::get('/professor/{professor}/cursos/{curso}', [ProfessorController::class, 'showCurso'])->name('professor.showCurso');
+    Route::post('professor/{aluno}/{curso}', [ProfessorController::class, 'atribuirNota'])->name('professor.notas'); 
     Route::get('/', function(){
         return view('welcome');
     })->name('professor.cadastro');
+    // Route::get('/professor/{id}/edit', [ProfessorController::class, 'edit'])->name('professor.edit');
+    // Route::get('/change-password', [ProfessorController::class, 'changePassword'])->name('change-password');, 
 });
   
 /*------------------------------------------
