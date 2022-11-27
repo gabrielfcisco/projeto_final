@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Aluno;
 use App\Models\Curso;
 use App\Models\Professor;
 use App\Models\aluno_curso;
@@ -44,7 +45,7 @@ class ProfessorController extends Controller
         return view('professor.showCurso', compact('alunos', 'curso', 'coluna_nota'));
     }
 
-    public function atribuirNota(Request $request ,Aluno $aluno, Curso $curso){
+    public function atribuirNota(Request $request, Aluno $aluno, Curso $curso){
         $request->validate([
             'nota' => 'required',
         ]);

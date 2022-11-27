@@ -8,6 +8,7 @@
 				<th scope="col">#</th>
 				<th scope="col">Aluno</th>
 				<th scope="col">Nota</th>
+				<th scope="col">Ação</th>
 			</tr>
 		</thead>
         <tbody>
@@ -16,13 +17,17 @@
 		<tr>
 			<td>{{$loop->index + 1}}</td>
 			<td>{{$aluno->nome}}</td>
-			<td>
+			
                 <form method="POST" action="{{route('professor.notas',['aluno' => $aluno->id, 'curso' => $curso->id])}}">
                     @csrf
+					<td>
                     <input type="number" id="Nota" name="nota" value="{{$coluna_nota[$loop->index]->nota}}">
+					</td>
+					<td>
                     <button type="submit" class="btn btn-primary">Alterar</button>
+					</td>
                 </form>
-            </td>
+            
 		</tr>
 		@endforeach
 		@else
