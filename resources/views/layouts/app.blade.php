@@ -58,7 +58,11 @@
                         <li class="nav-item dropdown">
                             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                 @if (Auth::user()->type == 'secretaria' || Auth::user()->type == 'administrador')
-                                    {{ __('Secretaria') }}
+                                    @if (Auth::user()->type == 'secretaria')
+                                        {{ __('Secretaria') }}
+                                    @else
+                                        {{ __('Administrador') }}
+                                    @endif
                                 @endif
 
                                 @if (Auth::user()->type == 'aluno')
@@ -93,8 +97,8 @@
 
                                 @if ($type == 'professor')
                                 <li>
-                                    <a class="dropdown-item" href="{{ route('professor.edit', $id) }}">
-                                        {{ __('Atualizar Dados') }}
+                                    <a class="dropdown-item" href="{{ route('professor.change-password', Auth::user()->id) }}">
+                                        {{ __('Troca de Senha') }}
                                     </a>
                                 </li>
 

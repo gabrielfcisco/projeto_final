@@ -20,27 +20,47 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
 
-        // $users = [
-        //     [
-        //         'email'=>'Xastre@exemple.com',
-        //         'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi',
-        //         'type' => 1,
-        //     ],
-        //     [
-        //         'email'=>'Miro@exemple.com',
-        //         'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi',
-        //         'type' => 1,
-        //     ],
-        //     [
-        //         'email'=>'Pannain@exemple.com',
-        //         'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi',
-        //         'type' => 1,
-        //     ],
-        // ];
+        $users = [
+            [
+                'email'=>'Xastre@exemple.com',
+                'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi',
+                'type' => 1,
+            ],
+            [
+                'email'=>'Miro@exemple.com',
+                'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi',
+                'type' => 1,
+            ],
+            [
+                'email'=>'Pannain@exemple.com',
+                'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi',
+                'type' => 1,
+            ],
+            [
+                'email'=>'eduardo@exemple.com',
+                'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi',
+                'type' => 0,
+            ],
+            [
+                'email'=>'aluno@exemple.com',
+                'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi',
+                'type' => 0,
+            ],
+            [
+                'email'=>'secretaria@adm.com',
+                'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi',
+                'type' => 2,
+            ],
+            [
+                'email'=>'admin@adm.com',
+                'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi',
+                'type' => 3,
+            ],
+        ];
 
-        // foreach ($users as $key => $user) {
-        //     User::create($user);
-        // }
+        foreach ($users as $key => $user) {
+            User::create($user);
+        }
 
         \App\Models\User::factory(10)->create();
 
@@ -118,24 +138,41 @@ class DatabaseSeeder extends Seeder
         //     Curso::create($user);
         // }
 
-        // $professores = [
-        //     [
-        //        'nome'=>'Xastre',
-        //        'CPF'=> '45863257852',
-        //     ],
-        //     [
-        //         'nome'=>'Miro',
-        //         'CPF'=> '97854123658',
-        //     ],
-        //     [
-        //         'nome'=>'Pannain',
-        //         'CPF'=> '45321578965',
-        //     ],
-        // ];
+        $professores = [
+            [
+               'nome'=>'Xastre',
+               'CPF'=> '45863257852',
+            ],
+            [
+                'nome'=>'Miro',
+                'CPF'=> '97854123658',
+            ],
+            [
+                'nome'=>'Pannain',
+                'CPF'=> '45321578965',
+            ],
+        ];
 
-        // foreach ($professores as $key => $user) {
-        //     Professor::create($user);
-        // }
+        foreach ($professores as $key => $user) {
+            Professor::create($user);
+        }
+
+        $alunos = [
+            [
+                'nome'=>'Eduardo',
+                'CPF' => '12345678910',
+                'endereco' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. ',
+            ],
+            [
+                'nome'=>'Aluno',
+                'CPF' => '01987654321',
+                'endereco' => 'Vestibulum nulla maximus quis. Aenean semper congue',
+            ],
+        ];
+
+        foreach ($alunos as $key => $aluno) {
+            Aluno::create($aluno);
+        }
 
         // \App\Models\User::factory()->create([
         //     'name' => 'Test User',
