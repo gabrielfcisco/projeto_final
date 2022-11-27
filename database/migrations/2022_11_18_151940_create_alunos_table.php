@@ -18,10 +18,10 @@ return new class extends Migration
             $table->string('nome');
             $table->string('CPF')->unique();
             $table->string('endereco');
-            $table->string('complemento');
-            $table->string('cidade');
-            $table->string('estado');
-            $table->string('CEP', 8);
+            $table->string('complemento')->default(0);
+            $table->string('cidade')->default(0);
+            $table->string('estado')->default(0);
+            $table->string('CEP', 8)->default(0);
             $table->string('filme')->nullable();
             $table->foreignId('user_id')
                 ->nullable()

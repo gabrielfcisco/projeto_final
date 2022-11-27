@@ -29,6 +29,64 @@ class SecretariaController extends Controller
         }
         return back();
     }
+
+    public function adicionarCurso_page(){
+        return view('secretaria.adicionarCurso');
+    }
+
+    public function adicionarCurso(Request $request){
+        $request->validate([
+            'nome' => 'required',
+            'descricao_curta' => 'required',
+            'descricao_completa' => 'required',
+            'max' => 'required',
+            'min' => 'required',
+        ]);
+
+        Curso::create([
+            'nome' => $request->nome,
+            'descricaoCompleta' => $request->descricao_completa,
+            'descricaoCurta' => $request->descricao_curta,
+            'max' => $request->max,
+            'min' => $request->min,
+        ]);
+
+        $cursos = Curso::all();
+        return view('secretaria.cursos', compact('cursos'));
+    }
+
+    public function editCurso_page($curso_id){
+        $curso = Curso::find($curso_id);
+        return view('secretaria.editCurso', compact('curso'));
+    }
+
+    public function editCurso(Request $request, $curso_id){
+        $request->validate([
+            'nome' => 'required',
+            'descricao_curta' => 'required',
+            'descricao_completa' => 'required',
+            'max' => 'required',
+            'min' => 'required',
+        ]);
+
+        Curso::where('id', $curso_id)->update([
+            'nome' => $request->nome,
+            'descricaoCompleta' => $request->descricao_completa,
+            'descricaoCurta' => $request->descricao_curta,
+            'max' => $request->max,
+            'min' => $request->min,
+        ]);
+
+        $cursos = Curso::all();
+        return view('secretaria.cursos', compact('cursos'));
+    }
+
+    public function delCurso($curso_id){
+        Curso::where('id', $curso_id)->delete();
+
+        $cursos = Curso::all();
+        return view('secretaria.cursos', compact('cursos'));
+    }
 //     /*------------------------------------------
 //     --------------------------------------------
 //     CRUD Alunos

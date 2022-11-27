@@ -1,6 +1,6 @@
 @extends('secretaria.master')
 @section('base')
-<div class="card-header">{{__('Cursos Disponiveis')}}<a class="btn btn-primary" href="#">Adicionar Curso</a></div>
+<div class="card-header">{{__('Cursos Disponiveis')}}<a class="btn btn-primary" href="/secretaria/cursos/adicionar">Adicionar Curso</a></div>
 <div class="card-body">
     <table class="table table-borderless">
 		<thead>
@@ -16,7 +16,7 @@
 		@foreach($cursos as $curso)
 		<tr>
 			<td>{{$loop->index + 1}}</td>
-			<td>{{$curso->nome}}</td>
+			<td><a href={{ route('secretaria.editCurso_page', $curso->id) }} class="btn btn-outline-dark">{{$curso->nome}}</a></td>
             <td>{{$curso->descricaoCompleta}}</td>
 			<td>
                 @if ($curso->aberto_matricula == 0)

@@ -62,10 +62,10 @@ class DatabaseSeeder extends Seeder
             User::create($user);
         }
 
-        \App\Models\User::factory(10)->create();
+        // \App\Models\User::factory(10)->create();
 
 
-        Aluno::factory(10)->create();
+        // Aluno::factory(10)->create();
 
         $cursos = [
             [
@@ -100,40 +100,6 @@ class DatabaseSeeder extends Seeder
             Curso::create($user);
         }
 
-        $professores = [
-
-            [
-                'nome' => 'Engenharia de Computação',
-                'descricaoCompleta' => 'Quod illum sed mollitia tempora cupiditate. Non quia alias quo ducimus maiores ullam.',
-                'descricaoCurta' => 'ghjahglahglçfhaglçahgfhgahglfahglfhlgalhgljfhg',
-                'matriculas' => 0,
-                'max' => 30,
-                'min' =>  10,
-                'professor_id' => 1,
-                'aberto_matricula' => true,
-            ],
-            [
-                'nome' => 'Engenharia Civil',
-                'descricaoCompleta' => 'Quod illum sed mollitia tempora cupiditate. Non quia alias quo ducimus maiores ullam.',
-                'descricaoCurta' => 'ghjahglahglçfhaglçahgfhgahglfahglfhlgalhgljfhg',
-                'matriculas' => 0,
-                'max' => 30,
-                'min' =>  10,
-                'professor_id' => 1,
-                'aberto_matricula' => false,
-            ],
-            [
-                'nome' => 'Engenharia de Química',
-                'descricaoCompleta' => 'Quod illum sed mollitia tempora cupiditate. Non quia alias quo ducimus maiores ullam.',
-                'descricaoCurta' => 'ghjahglahglçfhaglçahgfhgahglfahglfhlgalhgljfhg',
-                'matriculas' => 0,
-                'max' => 30,
-                'min' =>  10,
-                'professor_id' => 1,
-                'aberto_matricula' => true,
-            ],
-        ];
-
         // foreach ($cursos as $key => $user) {
         //     Curso::create($user);
         // }
@@ -147,12 +113,12 @@ class DatabaseSeeder extends Seeder
             [
                 'nome' => 'Miro',
                 'CPF' => '97854123658',
-                'user_id' => '1',
+                'user_id' => '2',
             ],
             [
                 'nome' => 'Pannain',
                 'CPF' => '45321578965',
-                'user_id' => '1',
+                'user_id' => '3',
             ],
         ];
 
@@ -165,11 +131,13 @@ class DatabaseSeeder extends Seeder
                 'nome' => 'Eduardo',
                 'CPF' => '12345678910',
                 'endereco' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. ',
+                'user_id' => '4',
             ],
             [
                 'nome' => 'Aluno',
                 'CPF' => '01987654321',
                 'endereco' => 'Vestibulum nulla maximus quis. Aenean semper congue',
+                'user_id' => '5',
             ],
         ];
 

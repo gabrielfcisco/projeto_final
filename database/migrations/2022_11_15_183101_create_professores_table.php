@@ -17,10 +17,10 @@ return new class extends Migration
             $table->id();
             $table->string('Nome');
             $table->string('CPF');
-            $table->string('complemento');
-            $table->string('cidade');
-            $table->string('estado');
-            $table->string('CEP', 8);
+            $table->string('complemento')->default(0);
+            $table->string('cidade')->default(0);
+            $table->string('estado')->default(0);
+            $table->string('CEP', 8)->default(0);
             $table->timestamp('ultimoAcesso')->nullable();
             $table->foreignId('user_id')
                 ->nullable()
