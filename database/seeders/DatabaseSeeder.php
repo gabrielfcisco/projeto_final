@@ -42,10 +42,10 @@ class DatabaseSeeder extends Seeder
         //     User::create($user);
         // }
 
-\App\Models\User::factory(10)->create();
+        \App\Models\User::factory(10)->create();
 
 
-        // Aluno::factory(10)->create();
+        Aluno::factory(10)->create();
 
         $cursos = [
             [
@@ -55,6 +55,7 @@ class DatabaseSeeder extends Seeder
                'matriculas' => 0,
                'max'=> 30,
                'min' =>  10,
+               'aberto_matricula' => true,
             ],
             [
                 'nome'=>'Engenharia Civil',
@@ -71,6 +72,7 @@ class DatabaseSeeder extends Seeder
                 'matriculas' => 0,
                 'max'=> 30,
                 'min' =>  10,
+                'aberto_matricula' => true,
             ],
         ];
 
@@ -112,9 +114,9 @@ class DatabaseSeeder extends Seeder
             ],
         ];
 
-        foreach ($cursos as $key => $user) {
-            Curso::create($user);
-        }
+        // foreach ($cursos as $key => $user) {
+        //     Curso::create($user);
+        // }
 
         // $professores = [
         //     [

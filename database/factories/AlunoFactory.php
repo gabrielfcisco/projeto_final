@@ -21,7 +21,11 @@ class AlunoFactory extends Factory
             'nome' => fake()->name(),
             'CPF' => fake()->unique()->numerify('###########'),
             'ultimoAcesso' => now(),
-            'endereco' => fake()->address(),
+            'endereco' => fake()->streetAddress(),
+            'complemento' => fake()->secondaryAddress(),
+            'cidade' => fake()->city(),
+            'estado' => fake()->state(),
+            'CEP' => fake()->numerify('########'),
             'user_id' => User::inRandomOrder()->first()->id,
         ];
     }

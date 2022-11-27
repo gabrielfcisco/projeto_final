@@ -36,11 +36,13 @@ Route::middleware(['auth', 'user-acess:aluno'])->group(function () {
         return view('welcome');
     })->name('aluno.cadastro');
     Route::get('/aluno/{id}/edit', [AlunoController::class, 'edit']);
+    Route::put('/aluno/{aluno}/update', [AlunoController::class, 'update'])->name('aluno.updating');
     Route::get('/change-password', [AlunoController::class, 'changePassword'])->name('change-password');
     Route::post('/update-password', [AlunoController::class, 'updatePassword'])->name('update-password');
     Route::get('/aluno/cursos/{id}', [AlunoController::class, 'show'])->name('cursos.show');
     Route::get('/aluno/{aluno}/matriculas', [AlunoController::class, 'cursosMatriculados'])->name('cursos.matriculados');
     Route::get('/matricula/{aluno}/{curso}', [AlunoController::class, 'matricula'])->name('cursos.matricula');
+    Route::get('/desmatricula/{aluno}/{curso}', [AlunoController::class, 'desmatricula'])->name('cursos.desmatricula');
 });
 
 /*------------------------------------------

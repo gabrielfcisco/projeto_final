@@ -17,8 +17,8 @@
 				<th scope="col">#</th>
 				<th scope="col">Nome do Curso</th>
 				<th scope="col">Descrição Curta</th>
-				<th scope="col">Descrição Completa</th>
-				<th scope="col">Status</th>
+				<th scope="col">Nota</th>
+				<th scope="col">Ação</th>
 			</tr>
 		</thead>
 		@if($cursos->count() > 0)
@@ -26,21 +26,13 @@
 		<tr>
 			<td>{{$loop->index + 1}}</td>
 			<td>{{$curso->nome}}</td>
-			<td>{{$curso->descricao_completa}}</td>
-			<td>{{$curso->descricao_curta}}</td>
-			@if($curso->aberto_matricula == true)
+			<td>{{$curso->descricaoCurta}}</td>
+			<td>{{$curso->nota}}</td>
 			<td>
-				<a href="{{route('cursos.matricula', ['aluno' => Auth::user()->aluno->id, 'curso' => $curso->id])}}" class="btn btn-success">
-					Realizar Matrícula
-				</a>
+				<a class="btn btn-danger" href="{{route('cursos.desmatricula', ['aluno' => Auth::user()->aluno->id, 'curso' => $curso->id])}}">Encerrar Matrícula</a>
 			</td>
-		@else
-			<td>
-				<a class="btn btn-danger" href="#">Matrículas Encerradas</a>
-			</td>
-		@endif
 		</tr>
-		@endforeach
+        @endforeach
 		@else
 		<tr>
 			<td colspan="4">Dados não encontrados!</td>

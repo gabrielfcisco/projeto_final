@@ -23,7 +23,7 @@ return new class extends Migration
                 ->constrained('cursos')
                 ->onDelete('CASCADE')
                 ->onUpdate('CASCADE');
-            $table->float('nota', 2, 2)->default(0);
+            $table->float('nota')->default(0.00);
             $table->timestamps();
         });
     }

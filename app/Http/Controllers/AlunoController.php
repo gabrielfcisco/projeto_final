@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Aluno;
+use App\Models\aluno_curso;
 use App\Models\Curso;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -77,10 +78,10 @@ class AlunoController extends Controller
         return redirect()->route('aluno.index')->with('ok', 'aluno cadastrados com sucesso!');
     }
 
-    public function edit(aluno $aluno)
+    public function edit(User $user)
     {
-        $aluno = Aluno::find(Auth::user()->id);
-        $curso = $aluno->curso;
+        $aluno = Auth::user()->aluno;
+
         
         $filmes = array();
 
@@ -113,24 +114,32 @@ class AlunoController extends Controller
     public function update(Request $request, aluno $aluno)
     {
         $request->validate([
-            'email' => Hash::make($request->RA),
-            'nome' => $request->Nome,
-            'sobrenome' => $request->Sobrenome,
-            'filme' => implode(", ", $request->Filmes),
-            'CPF' => $request->CPF,
-            'materias' => $request->id_curso,
+            'email' => 'required',
+            'nome' => 'required',
+            'CPF' => 'required',
+            'endereco' => 'required',
+            'complemento' => 'required',
+            'cidade' => 'required',
+            'estado' => 'required',
+            'CEP' => 'required',
+        ]);
+
+        $aluno->user()->update([
+            'email' => $request->email,
         ]);
 
         $aluno->update([
-            'email' => $request->RA,
-            'nome' => $request->Nome,
-            'sobrenome' => $request->Sobrenome,
-            'filme' => implode(", ", $request->Filmes),
+            'nome' => $request->nome,
             'CPF' => $request->CPF,
-            'materias' => $request->id_curso,
+            'endereco' => $request->endereco,
+            'complemento' => $request->complemento,
+            'cidade' => $request->cidade,
+            'estado' => $request->estado,
+            'CEP' => $request->CEP,
+            'filme' => $request->filmes,
         ]);
 
-        return redirect()->route('aluno.index')->with('ok', 'Aluno atualizado com sucesso!');
+        return back()->with('sucess', 'Aluno atualizado com sucesso!');
     }
 
     public function destroy(aluno $aluno)
@@ -154,7 +163,7 @@ class AlunoController extends Controller
 
         #Match The Old Password
         if (!Hash::check($request->old_password, Auth::user()->password)) {
-            return back()->with("error", "Old Password Doesn't match!");
+            return back()->with("error", "Senha Anterior não está correta!");
         }
 
         #Update the new Password
@@ -162,19 +171,19 @@ class AlunoController extends Controller
             'password' => Hash::make($request->new_password)
         ]);
 
-        return back()->with("status", "Password changed successfully!");
+        return back()->with("status", "Senha alterada com sucesso!");
     }
         
     public function show (User $user)
     {   
-        // $user = User::find(Auth::user()->id);
+        $user = User::find(Auth::user()->id);
         // $user->aluno()->create([
         //     'nome'=>'Gabriel',
         //     'CPF'=>'45789654855',
         //     'endereco'=>'Rua da Vida, 237',
         //     'ultimoAcesso'=>now(),
         // ]);
-        // $aluno = $user->aluno;
+        $aluno = $user->aluno;
         // // dd($aluno);
         // // $aluno->cursos()->attach(1);
         // $aluno->load('cursos');
@@ -210,6 +219,19 @@ class AlunoController extends Controller
     public function cursosMatriculados(Aluno $aluno)
     {
         $cursos = $aluno->cursos;
+
+        foreach($cursos as $curso){
+            $s = aluno_curso::where('aluno_id', $aluno->id)->where('curso_id', $curso->id)->first();
+            $curso['nota'] = $s->nota;
+        }
+
         return view('aluno.cursosMatriculados', compact('cursos'));
+    }
+
+    public function desmatricula(Aluno $aluno, Curso $curso) {
+        
+        $aluno->cursos()->detach($curso->id);
+        return back()->with("status", "Matrícula encerrada com sucesso!");
+    
     }
 }
