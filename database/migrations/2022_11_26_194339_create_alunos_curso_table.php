@@ -20,9 +20,9 @@ return new class extends Migration
                 ->onDelete('CASCADE')
                 ->onUpdate('CASCADE');
                 $table->foreignId('curso_id')
-                ->constrained('cursos')
-                ->onDelete('CASCADE')
-                ->onUpdate('CASCADE');
+                    ->constrained('cursos')
+                    ->onDelete('CASCADE')
+                    ->onUpdate('CASCADE');
             $table->float('nota')->default(0.00);
             $table->timestamps();
         });
@@ -36,5 +36,11 @@ return new class extends Migration
     public function down()
     {
         Schema::dropIfExists('alunos_curso');
+
+        Schema::table('cursos', function (Blueprint $table)
+        {
+            $table->dropForeign('aluno_curso_curso_id_foreign');
+            $table->dropColumn('cursos_id');
+        });
     }
 };

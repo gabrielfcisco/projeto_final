@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('Nome');
             $table->string('CPF');
+            $table->string('endereco');
             $table->string('complemento');
             $table->string('cidade');
             $table->string('estado');

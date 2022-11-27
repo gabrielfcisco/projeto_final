@@ -25,6 +25,7 @@ class DatabaseSeeder extends Seeder
                 'email' => 'Xastre@exemple.com',
                 'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi',
                 'type' => 1,
+
             ],
             [
                 'email' => 'Miro@exemple.com',
@@ -42,12 +43,17 @@ class DatabaseSeeder extends Seeder
                 'type' => 0,
             ],
             [
-                'email' => 'aluno@exemple.com',
+                'email' => 'joao@exemple.com',
                 'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi',
                 'type' => 0,
             ],
             [
-                'email' => 'secretaria@adm.com',
+                'email' => 'guilherme@exemple.com',
+                'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi',
+                'type' => 0,
+            ],
+            [
+                'email' => 'secretaria@sec.com',
                 'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi',
                 'type' => 2,
             ],
@@ -64,35 +70,73 @@ class DatabaseSeeder extends Seeder
 
         \App\Models\User::factory(10)->create();
 
+        $professores = [
 
-        Aluno::factory(10)->create();
+            [
+                'nome' => 'Leandro Alonso Xastre',
+                'CPF' => '12345678912',
+                'endereco' => 'Rua dos bobos',
+                'complemento' => 'Casa 0',
+                'cidade' =>'Campinas',
+                'estado' =>'Sao Paulo',
+                'CEP' => '12345678',
+                'user_id' => '1',
+            ],
+            [
+                'nome' => 'Valdomiro Placido dos Santos',
+                'CPF' => '12345678912',
+                'endereco' => 'Rua dos matematicos',
+                'complemento' => 'Casa 12',
+                'cidade' =>'Campinas',
+                'estado' =>'Sao Paulo',
+                'CEP' => '87654321',
+                'user_id' => '2',
+            ],
+            [
+                'nome' => 'Ricardo Pannain',
+                'CPF' => '12345678912',
+                'endereco' => 'Rua dos loucos',
+                'complemento' => 'Casa 88',
+                'cidade' =>'Campinas',
+                'estado' =>'Sao Paulo',
+                'CEP' => '12387654',
+                'user_id' => '3',
+            ],
+        ];
 
+        foreach ($professores as $key => $user) {
+            Professor::create($user);
+        }
+        
         $cursos = [
             [
                 'nome' => 'Engenharia de Computação',
-                'descricaoCompleta' => 'Quod illum sed mollitia tempora cupiditate. Non quia alias quo ducimus maiores ullam.',
-                'descricaoCurta' => 'ghjahglahglçfhaglçahgfhgahglfahglfhlgalhgljfhg',
+                'descricaoCompleta' => 'Curso que engloba todas as areas da computação, desde a parte fisica(hardware) como a digital(software).',
+                'descricaoCurta' => 'Gostar de tecnologia e inovação são as caracteristicas principais para os ingressantes deste curso.',
                 'matriculas' => 0,
                 'max' => 30,
                 'min' =>  10,
                 'aberto_matricula' => true,
+                'professor_id' =>'1',
             ],
             [
                 'nome' => 'Engenharia Civil',
-                'descricaoCompleta' => 'Quod illum sed mollitia tempora cupiditate. Non quia alias quo ducimus maiores ullam.',
-                'descricaoCurta' => 'ghjahglahglçfhaglçahgfhgahglfahglfhlgalhgljfhg',
+                'descricaoCompleta' => 'Desenvolver projetos de engenharia, executar obras, planejar, coordenar a operação e manutenção são algumas das competencias desenvolvidas neste curso.',
+                'descricaoCurta' => 'A mais antiga engenharia.',
                 'matriculas' => 0,
                 'max' => 30,
                 'min' =>  10,
+                'professor_id' =>'2',
             ],
             [
                 'nome' => 'Engenharia de Química',
-                'descricaoCompleta' => 'Quod illum sed mollitia tempora cupiditate. Non quia alias quo ducimus maiores ullam.',
-                'descricaoCurta' => 'ghjahglahglçfhaglçahgfhgahglfahglfhlgalhgljfhg',
+                'descricaoCompleta' => 'O engenheiro químico busca transformar a matéria prima em produtos uteis para o consumidor final.',
+                'descricaoCurta' => 'É o ramo da engenharia que trata de processos químicos.',
                 'matriculas' => 0,
                 'max' => 30,
                 'min' =>  10,
                 'aberto_matricula' => true,
+                'professor_id' =>'3',
             ],
         ];
 
@@ -100,76 +144,36 @@ class DatabaseSeeder extends Seeder
             Curso::create($user);
         }
 
-        $professores = [
-
-            [
-                'nome' => 'Engenharia de Computação',
-                'descricaoCompleta' => 'Quod illum sed mollitia tempora cupiditate. Non quia alias quo ducimus maiores ullam.',
-                'descricaoCurta' => 'ghjahglahglçfhaglçahgfhgahglfahglfhlgalhgljfhg',
-                'matriculas' => 0,
-                'max' => 30,
-                'min' =>  10,
-                'professor_id' => 1,
-                'aberto_matricula' => true,
-            ],
-            [
-                'nome' => 'Engenharia Civil',
-                'descricaoCompleta' => 'Quod illum sed mollitia tempora cupiditate. Non quia alias quo ducimus maiores ullam.',
-                'descricaoCurta' => 'ghjahglahglçfhaglçahgfhgahglfahglfhlgalhgljfhg',
-                'matriculas' => 0,
-                'max' => 30,
-                'min' =>  10,
-                'professor_id' => 1,
-                'aberto_matricula' => false,
-            ],
-            [
-                'nome' => 'Engenharia de Química',
-                'descricaoCompleta' => 'Quod illum sed mollitia tempora cupiditate. Non quia alias quo ducimus maiores ullam.',
-                'descricaoCurta' => 'ghjahglahglçfhaglçahgfhgahglfahglfhlgalhgljfhg',
-                'matriculas' => 0,
-                'max' => 30,
-                'min' =>  10,
-                'professor_id' => 1,
-                'aberto_matricula' => true,
-            ],
-        ];
-
-        // foreach ($cursos as $key => $user) {
-        //     Curso::create($user);
-        // }
-
-        $professores = [
-            [
-                'nome' => 'Xastre',
-                'CPF' => '45863257852',
-                'user_id' => '1',
-            ],
-            [
-                'nome' => 'Miro',
-                'CPF' => '97854123658',
-                'user_id' => '1',
-            ],
-            [
-                'nome' => 'Pannain',
-                'CPF' => '45321578965',
-                'user_id' => '1',
-            ],
-        ];
-
-        foreach ($professores as $key => $user) {
-            Professor::create($user);
-        }
-
         $alunos = [
             [
                 'nome' => 'Eduardo',
-                'CPF' => '12345678910',
-                'endereco' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. ',
+                'CPF' => '12345678912',
+                'endereco' => 'Rua dos bobos',
+                'complemento' => 'Casa 13',
+                'cidade' =>'Campinas',
+                'estado' =>'Sao Paulo',
+                'CEP' => '87612354',
+                'user_id' => '4',
             ],
             [
-                'nome' => 'Aluno',
-                'CPF' => '01987654321',
-                'endereco' => 'Vestibulum nulla maximus quis. Aenean semper congue',
+                'nome' => 'Joao',
+                'CPF' => '98765432198',
+                'endereco' => 'Rua dos existentes',
+                'complemento' => 'Casa 1',
+                'cidade' =>'Campinas',
+                'estado' =>'Sao Paulo',
+                'CEP' => '55566677',
+                'user_id' => '5',
+            ],
+            [
+                'nome' => 'Guilherme',
+                'CPF' => '45678912345',
+                'endereco' => 'Rua dos existentes',
+                'complemento' => 'Casa 2',
+                'cidade' =>'Campinas',
+                'estado' =>'Sao Paulo',
+                'CEP' => '55566677',
+                'user_id' => '6',
             ],
         ];
 
