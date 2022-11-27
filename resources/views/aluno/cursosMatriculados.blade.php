@@ -15,6 +15,7 @@
 		<thead>
 			<tr>
 				<th scope="col">#</th>
+				<th scope="col">Capa</th>
 				<th scope="col">Nome do Curso</th>
 				<th scope="col">Descrição Curta</th>
 				<th scope="col">Nota</th>
@@ -25,6 +26,7 @@
 		@foreach($cursos as $curso)
 		<tr>
 			<td>{{$loop->index + 1}}</td>
+			<td><img src="{{$curso->file_path}}" class="img-thumbnail" alt="..." style="width:5vw"></td>
 			<td>{{$curso->nome}}</td>
 			<td>{{$curso->descricaoCurta}}</td>
 			<td>{{$curso->nota}}</td>

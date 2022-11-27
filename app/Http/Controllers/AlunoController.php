@@ -200,6 +200,13 @@ class AlunoController extends Controller
         // ]);
 
         $cursos = Curso::all();
+        foreach($cursos as $curso) {
+            if($curso->matriculas >= $curso->max) {
+                $curso->update([
+                    'abertoMatricula' => false,
+                ]);
+            }
+        }
         return view('aluno.cursos', compact('cursos'));
     }
 
@@ -212,6 +219,8 @@ class AlunoController extends Controller
             }
         }
         $aluno->cursos()->attach($curso->id);
+        $aluno->cursos()->increment('matriculas');
+
         return back()->with("status", "Matrícula realizada com sucesso!");
 
     }
@@ -230,6 +239,7 @@ class AlunoController extends Controller
 
     public function desmatricula(Aluno $aluno, Curso $curso) {
         
+        $aluno->cursos()->decrement('matriculas');
         $aluno->cursos()->detach($curso->id);
         return back()->with("status", "Matrícula encerrada com sucesso!");
     
