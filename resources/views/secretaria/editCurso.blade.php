@@ -41,6 +41,18 @@
 				<label for="Minimo" class="form-label">Mínimo de Alunos</label>
 				<input type="number" class="form-control" id="Min" name="min" value="{{$curso->min}}">
 			</div>
+			<div class="col-12">
+				<label for="Professores" class="form-label">Professor</label><br>
+				<select class="form-select" name="professor" id="professor" placeholder="Selecione...">
+					@if(count($professores) > 0)
+					@foreach($professores as $professor)
+					<option value="{{ $professor->id }}">{{ $professor->Nome }}</option>
+					@endforeach
+					@else
+					<option colspan="4">Professores não encontrados!</option>
+					@endif
+				</select>
+			</div>
 
 			<div class="col-6">
 			    <button type="submit" class="btn btn-primary">Enviar</button>
@@ -57,6 +69,7 @@
 							<th scope="col">#</th>
 							<th scope="col">Nome</th>
 							<th scope="col">Email</th>
+							<th scope="col">Nota</th>
 							<th scope="col">Ação</th>
 						</tr>
 					</th>
@@ -67,9 +80,8 @@
 							<td>{{$loop->index + 1}}</td>
 							<td>{{$aluno->nome}}</td>
 							<td>{{$aluno->user->email}}</td>
-							<td>
+							<td>{{$aluno->nota}}<td>
 								<form action="{{ route('aluno.destroy', $aluno->id) }}" method="POST">
-									<a class="btn btn-success" href="{{ route('cursos.matricula', ['aluno' => $aluno->id, 'curso' => $curso->id]) }}">Editar</a>
 									@csrf
 									@method('DELETE')
 									<button type="submit" class="btn btn-danger">Excluir</button>
