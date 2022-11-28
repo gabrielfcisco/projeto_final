@@ -70,7 +70,7 @@
                                 @endif
 
                                 @if (Auth::user()->type == 'professor')
-                                    {{__(Auth::user()->professor->nome)}}
+                                    {{__(Auth::user()->professor->Nome)}}
                                 @endif
                             </a>
 

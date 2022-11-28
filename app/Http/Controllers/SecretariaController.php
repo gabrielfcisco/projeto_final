@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Aluno;
-use App\Models\aluno_curso;
 use App\Models\Curso;
 use App\Models\Professor;
+use App\Models\aluno_curso;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 
@@ -60,13 +60,30 @@ class SecretariaController extends Controller
     public function editCurso_page($curso_id){
         $curso = Curso::find($curso_id);
         $alunos = $curso->alunos;
+
+        $registros = 0;
+        $soma_notas = 0;
+        $reprovados = 0;
+        $aprovados = 0;
+        $notas = aluno_curso::all();
+        foreach($notas as $nota){
+            $soma_notas += $nota->nota;
+            $registros += 1;
+            if($nota->nota >= 5){
+                $aprovados += 1;
+            }else{
+                $reprovados += 1;
+            }
+        }
+        $nota = $soma_notas / $registros;
+
         foreach ($alunos as $aluno) {
             $s = aluno_curso::where('aluno_id', $aluno->id)->where('curso_id', $curso->id)->first();
             $aluno['nota'] = $s->nota;
         }
         $professores = Professor::all();
   
-        return view('secretaria.editCurso', compact('curso', 'alunos', 'professores'));
+        return view('secretaria.editCurso', compact('curso', 'alunos', 'professores', 'nota', 'aprovados', 'reprovados'));
     }
 
     public function editCurso(Request $request, $curso_id){

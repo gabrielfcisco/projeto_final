@@ -96,6 +96,26 @@
 						@endif
 					</tbody>
 				</table>
+
+				<div class="col-12 col-md-10">
+					<h3>Dados do Curso</h3>
+				</div>
+				<table class="table">
+					<th>
+						<tr>
+							<th scope="col">Média Geral</th>
+							<th scope="col">Alunos Aprovados</th>
+							<th scope="col">Alunos Reprovados</th>
+						</tr>
+					</th>
+					<tbody>
+						<tr>
+							<td>{{$nota}}</td>
+							<td>{{$aprovados}}</td>
+							<td>{{$reprovados}}</td>
+						</tr>
+					</tbody>
+				</table>
 			</div>
 		</div>
 </div>
