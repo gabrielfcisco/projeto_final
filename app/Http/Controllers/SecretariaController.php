@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Aluno;
-use App\Models\aluno_curso;
 use App\Models\Curso;
+use App\Models\Professor;
 use App\Models\aluno_curso;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
@@ -77,15 +77,13 @@ class SecretariaController extends Controller
         }
         $nota = $soma_notas / $registros;
 
-
-        return view('secretaria.editCurso', compact('curso', 'alunos', 'nota', 'aprovados', 'reprovados'));
         foreach ($alunos as $aluno) {
             $s = aluno_curso::where('aluno_id', $aluno->id)->where('curso_id', $curso->id)->first();
             $aluno['nota'] = $s->nota;
         }
         $professores = Professor::all();
   
-        return view('secretaria.editCurso', compact('curso', 'alunos', 'professores'));
+        return view('secretaria.editCurso', compact('curso', 'alunos', 'professores', 'nota', 'aprovados', 'reprovados'));
     }
 
     public function editCurso(Request $request, $curso_id){
