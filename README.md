@@ -53,14 +53,14 @@ Acesse o projeto
 Acesse o phpmyadmin
 [http://localhost:8081](http://localhost:8081)
 
-##User Professor
+## User Professor
 email: Xastre@exemple.com
 senha: password
 
-##User Aluno
+## User Aluno
 email: eduardo@exemple.com
 senha: password
 
-##User Secretaria
+## User Secretaria
 email: secretaria@sec.com
 senha: password
