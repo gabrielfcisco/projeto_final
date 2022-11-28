@@ -29,6 +29,7 @@ class SecretariaController extends Controller
         }
         return back();
     }
+
     public function adicionarCurso_page(){
         return view('secretaria.adicionarCurso');
     }
