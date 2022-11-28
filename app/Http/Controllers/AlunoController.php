@@ -3,26 +3,21 @@
 namespace App\Http\Controllers;
 
 use App\Models\Aluno;
+use App\Models\aluno_curso;
 use App\Models\Curso;
 use App\Models\User;
-
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Validation\Rule;
 
 class AlunoController extends Controller
 {
     public function index(aluno $aluno)
     {
-        $alunos = Aluno::orderBy('nome', 'asc')->paginate(10);
-        $id = explode(',', $aluno->id_curso);
-
-        foreach ($id as $i) {
-            $cursos = Curso::where('id', '=', $i)->get();
-        }
-
-        return view('secretaria.aluno.index', compact('alunos', 'cursos'));
+        $alunos = Aluno::orderBy('nome', 'asc')->paginate(20);
+        return view('secretaria.aluno.index', compact('alunos'));
     }
 
     public function create()
@@ -60,29 +55,39 @@ class AlunoController extends Controller
         $request->validate([
             'email' => 'required',
             'nome' => 'required',
-            'sobrenome' => 'required',
-            'filme' => 'required',
             'CPF' => 'required',
-            'materias' => 'required',
+            'endereco' => 'required',
+            'complemento' => 'required',
+            'cidade' => 'required',
+            'estado' => 'required',
+            'CEP' => 'required',
+            'senha' => ['required', 'string', 'min:8'],
         ]);
 
-        aluno::create([
-            'email' => $request->RA,
-            'nome' => $request->Nome,
-            'sobrenome' => $request->Sobrenome,
-            'filme' => implode(", ", $request->Filmes),
+        $user = User::create([
+            'email' => $request->email,
+            'password' => Hash::make($request->senha),
+            'type' => 0,
+        ]);
+
+        $user->aluno()->create([
+            'nome' => $request->nome,
             'CPF' => $request->CPF,
-            'materias' => $request->id_curso,
+            'endereco' => $request->endereco,
+            'complemento' => $request->complemento,
+            'cidade' => $request->cidade,
+            'estado' => $request->estado,
+            'CEP' => $request->CEP,
+            'filme' => $request->filmes,
         ]);
 
-        return redirect()->route('aluno.index')->with('ok', 'aluno cadastrados com sucesso!');
+        return back()->with('status', 'Aluno cadastrado com sucesso!');
     }
 
-    public function edit(aluno $aluno)
+    public function edit($id)
     {
-        $aluno = Aluno::find(Auth::user()->id);
-        $curso = $aluno->curso;
-        
+        $aluno = Aluno::find($id);
+
         $filmes = array();
 
         //$auxcategories =  Http::get('https://www.learn-laravel.cf/categories');
@@ -112,36 +117,46 @@ class AlunoController extends Controller
     }
 
     public function update(Request $request, aluno $aluno)
-    {
+    {   
+
         $request->validate([
-            'email' => Hash::make($request->RA),
-            'nome' => $request->Nome,
-            'sobrenome' => $request->Sobrenome,
-            'filme' => implode(", ", $request->Filmes),
-            'CPF' => $request->CPF,
-            'materias' => $request->id_curso,
+            'email' => 'required',
+            'nome' => 'required',
+            'CPF' => 'required',
+            'endereco' => 'required',
+            'complemento' => 'required',
+            'cidade' => 'required',
+            'estado' => 'required',
+            'CEP' => 'required',
+        ]);
+
+        $aluno->user()->update([
+            'email' => $request->email,
         ]);
 
         $aluno->update([
-            'email' => $request->RA,
-            'nome' => $request->Nome,
-            'sobrenome' => $request->Sobrenome,
-            'filme' => implode(", ", $request->Filmes),
+            'nome' => $request->nome,
             'CPF' => $request->CPF,
-            'materias' => $request->id_curso,
+            'endereco' => $request->endereco,
+            'complemento' => $request->complemento,
+            'cidade' => $request->cidade,
+            'estado' => $request->estado,
+            'CEP' => $request->CEP,
+            'filme' => $request->filmes,
         ]);
 
-        return redirect()->route('aluno.index')->with('ok', 'Aluno atualizado com sucesso!');
+        return back()->with('status', 'Aluno atualizado com sucesso!');
     }
 
     public function destroy(aluno $aluno)
-    {
+    {   
+        $aluno->user()->delete();
         $aluno->delete();
-        return redirect()->route('aluno.index')->with('ok', 'aluno removido com sucesso!');
+        return redirect()->route('aluno.index')->with('status', 'Aluno removido com sucesso!');
     }
 
     public function changePassword()
-    {   
+    {
         return view('aluno.changePassword');
     }
 
@@ -150,12 +165,12 @@ class AlunoController extends Controller
         # Validation
         $request->validate([
             'old_password' => 'required',
-            'new_password' => ['required', 'string', 'min:8','confirmed'],
+            'new_password' => ['required', 'string', 'min:8', 'confirmed'],
         ]);
 
         #Match The Old Password
         if (!Hash::check($request->old_password, Auth::user()->password)) {
-            return back()->with("error", "Old Password Doesn't match!");
+            return back()->with("error", "Senha Anterior não está correta!");
         }
 
         #Update the new Password
@@ -163,54 +178,53 @@ class AlunoController extends Controller
             'password' => Hash::make($request->new_password)
         ]);
 
-        return back()->with("status", "Password changed successfully!");
+        return back()->with("status", "Senha alterada com sucesso!");
     }
-        
-    public function show (User $user)
-    {   
-        // $user = User::find(Auth::user()->id);
-        // $user->aluno()->create([
-        //     'nome'=>'Gabriel',
-        //     'CPF'=>'45789654855',
-        //     'endereco'=>'Rua da Vida, 237',
-        //     'ultimoAcesso'=>now(),
-        // ]);
-        // $aluno = $user->aluno;
-        // // dd($aluno);
-        // // $aluno->cursos()->attach(1);
-        // $aluno->load('cursos');
-        // return $aluno;
 
-        // $aluno -> cursos()->create([
-        //     'nome'=>'Engenharia do Amor',
-        //     'descricao_completa'=>'Quod illum sed mollitia tempora cupiditate. Non quia alias quo ducimus maiores ullam.',
-        //     'descricao_curta' => 'ghjahglahglçfhaglçahgfhgahglfahglfhlgalhgljfhg',
-        //     'matriculas' => 0,
-        //     'max'=> 30,
-        //     'min' =>  10,
-        //     'aberto_matricula' => true,
-        // ]);
-
+    public function show(User $user)
+    {
         $cursos = Curso::all();
+        foreach ($cursos as $curso) {
+            if ($curso->matriculas >= $curso->max) {
+                $curso->update([
+                    'abertoMatricula' => false,
+                ]);
+            }
+        }
         return view('aluno.cursos', compact('cursos'));
     }
 
     public function matricula(Aluno $aluno, Curso $curso)
-    {   
+    {
         $cursos = $aluno->cursos;
-        foreach($cursos as $c){
-            if($c->id == $curso->id){
+        foreach ($cursos as $c) {
+            if ($c->id == $curso->id) {
                 return back()->with("error", "Você já está matriculado no curso");
             }
         }
         $aluno->cursos()->attach($curso->id);
-        return back()->with("status", "Matrícula realizada com sucesso!");
+        $aluno->cursos()->increment('matriculas');
 
+        return back()->with("status", "Matrícula realizada com sucesso!");
     }
 
     public function cursosMatriculados(Aluno $aluno)
     {
         $cursos = $aluno->cursos;
+
+        foreach ($cursos as $curso) {
+            $s = aluno_curso::where('aluno_id', $aluno->id)->where('curso_id', $curso->id)->first();
+            $curso['nota'] = $s->nota;
+        }
+
         return view('aluno.cursosMatriculados', compact('cursos'));
+    }
+
+    public function desmatricula(Aluno $aluno, Curso $curso)
+    {
+
+        $aluno->cursos()->decrement('matriculas');
+        $aluno->cursos()->detach($curso->id);
+        return back()->with("status", "Matrícula encerrada com sucesso!");
     }
 }

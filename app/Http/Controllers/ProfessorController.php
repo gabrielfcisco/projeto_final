@@ -18,7 +18,55 @@ class ProfessorController extends Controller
 
         $professores = Professor::orderBy('Nome', 'asc')->paginate(10);
 
-        return view('professor.index', compact('professores'));
+        return view('secretaria.professor.index', compact('professores'));
+    }
+
+    public function update(Request $request, Professor $professor)
+    {   
+
+        $request->validate([
+            'email' => 'required',
+            'nome' => 'required',
+            'CPF' => 'required',
+            'endereco' => 'required',
+            'complemento' => 'required',
+            'cidade' => 'required',
+            'estado' => 'required',
+            'CEP' => 'required',
+        ]);
+
+        $professor->user()->update([
+            'email' => $request->email,
+        ]);
+
+        $professor->update([
+            'Nome' => $request->nome,
+            'CPF' => $request->CPF,
+            'endereco' => $request->endereco,
+            'complemento' => $request->complemento,
+            'cidade' => $request->cidade,
+            'estado' => $request->estado,
+            'CEP' => $request->CEP,
+        ]);
+        return back()->with('status', 'Professor atualizado com sucesso!');
+    }
+
+    public function create()
+    {
+        return view('secretaria.professor.create');
+    }
+    
+    public function destroy(Professor $Professor)
+    {   
+        $Professor->user()->delete();
+        $Professor->delete();
+        return redirect()->route('professor.index')->with('status', 'Professor removido com sucesso!');
+    }
+
+    public function edit($id)
+    {
+        $professor = Professor::find($id);
+        return view('secretaria.professor.edit', compact('professor'));
     }
 
     public function show(Professor $professor){
@@ -34,6 +82,38 @@ class ProfessorController extends Controller
         dd($professor->cursos);
 
         return view('professor.index', compact('professores'));
+    }
+    public function store(Request $request)
+    {
+        $request->validate([
+            'email' => 'required',
+            'nome' => 'required',
+            'CPF' => 'required',
+            'endereco' => 'required',
+            'complemento' => 'required',
+            'cidade' => 'required',
+            'estado' => 'required',
+            'CEP' => 'required',
+            'senha' => ['required', 'string', 'min:8'],
+        ]);
+
+        $user = User::create([
+            'email' => $request->email,
+            'password' => Hash::make($request->senha),
+            'type' => 1,
+        ]);
+
+        $user->professor()->create([
+            'Nome' => $request->nome,
+            'CPF' => $request->CPF,
+            'endereco' => $request->endereco,
+            'complemento' => $request->complemento,
+            'cidade' => $request->cidade,
+            'estado' => $request->estado,
+            'CEP' => $request->CEP,
+        ]);
+
+        return back()->with('status', 'Professor cadastrado com sucesso!');
     }
 
     public function showCursos(Professor $professor){

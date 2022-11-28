@@ -1,6 +1,18 @@
 @extends('secretaria.master')
 @section('base')
-<div class="card-header">{{__('Cursos Disponiveis')}}<a class="btn btn-primary" href="#">Adicionar Curso</a></div>
+<div class="card-header">
+<div class="row g-3">
+	<div class="col-6">
+		{{__('Cursos Disponiveis')}}
+	</div>
+	<div class="col-6">
+		<p class="text-end">
+		<a class="btn btn-primary" href="/secretaria/cursos/adicionar">Adicionar Curso</a>
+		</p>
+	</div>
+</div>
+</div>
+
 <div class="card-body">
     <table class="table table-borderless">
 		<thead>

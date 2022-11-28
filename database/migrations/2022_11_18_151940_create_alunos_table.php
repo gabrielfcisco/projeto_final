@@ -17,7 +17,11 @@ return new class extends Migration
             $table->id();
             $table->string('nome');
             $table->string('CPF')->unique();
-            $table->string('endereco');
+            $table->string('endereco')->nullable();
+            $table->string('complemento')->nullable();
+            $table->string('cidade')->nullable();
+            $table->string('estado')->nullable();
+            $table->string('CEP', 8)->nullable();
             $table->string('filme')->nullable();
             $table->foreignId('user_id')
                 ->nullable()
