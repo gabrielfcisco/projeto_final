@@ -42,7 +42,7 @@ Route::middleware(['auth', 'user-acess:aluno'])->group(function () {
     Route::post('/update-password', [AlunoController::class, 'updatePassword'])->name('update-password');
     Route::get('/aluno/cursos/{id}', [AlunoController::class, 'show'])->name('cursos.show');
     Route::get('/aluno/{aluno}/matriculas', [AlunoController::class, 'cursosMatriculados'])->name('cursos.matriculados');
-    Route::get('/matricula/{aluno}/{curso}', [AlunoController::class, 'matricula'])->name('cursos.matricula');
+    Route::get('/matricula/{aluno}/curso/{curso}', [AlunoController::class, 'matricula'])->name('cursos.matricula');
     Route::get('/desmatricula/{aluno}/{curso}', [AlunoController::class, 'desmatricula'])->name('cursos.desmatricula');
 });
 
@@ -102,7 +102,7 @@ Route::middleware(['auth', 'user-acess:secretaria'])->group(function () {
     Route::get('/secretaria/aluno', [SecretariaController::class, 'showAlunos'])->name('secretaria.aluno');
     Route::get('/aluno/{id}/edit', [AlunoController::class, 'edit']);
     Route::put('/aluno/{aluno}/update', [AlunoController::class, 'update'])->name('aluno.updating');
-    Route::get('/matricula/{aluno}/{curso}', [AlunoController::class, 'matricula'])->name('cursos.matricula');
+    Route::get('/matricula/{aluno}/{curso}', [AlunoController::class, 'matricula'])->name('cursos.secretariaMatricula');
 
     Route::get('/secretaria/professor', [SecretariaController::class, 'showProfessores'])->name('secretaria.professores');
     Route::get('/professor/{id}/edit', [ProfessorController::class, 'edit']);

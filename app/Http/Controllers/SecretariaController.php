@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Aluno;
+use App\Models\aluno_curso;
 use App\Models\Curso;
 use App\Models\aluno_curso;
 use Illuminate\Http\Request;
@@ -78,6 +79,13 @@ class SecretariaController extends Controller
 
 
         return view('secretaria.editCurso', compact('curso', 'alunos', 'nota', 'aprovados', 'reprovados'));
+        foreach ($alunos as $aluno) {
+            $s = aluno_curso::where('aluno_id', $aluno->id)->where('curso_id', $curso->id)->first();
+            $aluno['nota'] = $s->nota;
+        }
+        $professores = Professor::all();
+  
+        return view('secretaria.editCurso', compact('curso', 'alunos', 'professores'));
     }
 
     public function editCurso(Request $request, $curso_id){
@@ -89,12 +97,13 @@ class SecretariaController extends Controller
             'min' => 'required',
         ]);
 
-        Curso::where('id', $curso_id)->update([
+        $curso = Curso::where('id', $curso_id)->update([
             'nome' => $request->nome,
             'descricaoCompleta' => $request->descricao_completa,
             'descricaoCurta' => $request->descricao_curta,
             'max' => $request->max,
             'min' => $request->min,
+            'professor_id' => $request->professor,
         ]);
 
         $cursos = Curso::all();
