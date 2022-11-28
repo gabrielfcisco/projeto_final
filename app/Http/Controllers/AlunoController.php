@@ -81,7 +81,7 @@ class AlunoController extends Controller
             'filme' => $request->filmes,
         ]);
 
-        return back()->with('status', 'Aluno cadastrados com sucesso!');
+        return back()->with('status', 'Aluno cadastrado com sucesso!');
     }
 
     public function edit($id)

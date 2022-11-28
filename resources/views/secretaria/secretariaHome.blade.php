@@ -19,6 +19,15 @@
                 <a class="btn btn-outline-dark" href="{{route('secretaria.aluno')}}">Gerenciar Alunos</a>
             </div>
         </div>
+        <div class="card mb-3">
+            <img src="/cursos.png" class="card-img-top" alt="...">
+            <div class="card-body">
+                <h5 class="card-title">Professores</h5>
+                <p class="card-text">Aqui você pode ver todos os professores disponíveis, criar novos, alterar e cadastra-los em cursos
+                </p>
+                <a class="btn btn-outline-dark" href="{{route('secretaria.professores')}}">Gerenciar Professores</a>
+            </div>
+        </div>
     </div>
 </div>
 @endsection

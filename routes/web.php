@@ -92,6 +92,9 @@ Route::middleware(['auth', 'user-acess:secretaria'])->group(function () {
     Route::get('/secretaria/cursos/adicionar', [SecretariaController::class, 'adicionarCurso_page'])->name('secretaria.adicionarCurso_page');
     Route::post('/secretaria/cursos/add', [SecretariaController::class, 'adicionarCurso'])->name('secretaria.adicionarCurso');
 
+    Route::get('/secretaria/cursos/adicionar', [SecretariaController::class, 'adicionarCurso_page'])->name('secretaria.adicionarCurso_page');
+    Route::post('/secretaria/cursos/add', [SecretariaController::class, 'adicionarCurso'])->name('secretaria.adicionarCurso');
+
     Route::get('/secretaria/{id}/curso', [SecretariaController::class, 'editCurso_page'])->name('secretaria.editCurso_page');
     Route::post('/secretaria/{id}/editCurso', [SecretariaController::class, 'editCurso'])->name('secretaria.editCurso');
     Route::get('/secretaria/{id}/delCurso', [SecretariaController::class, 'delCurso'])->name('secretaria.delCurso'); 
@@ -100,6 +103,11 @@ Route::middleware(['auth', 'user-acess:secretaria'])->group(function () {
     Route::get('/aluno/{id}/edit', [AlunoController::class, 'edit']);
     Route::put('/aluno/{aluno}/update', [AlunoController::class, 'update'])->name('aluno.updating');
     Route::get('/matricula/{aluno}/{curso}', [AlunoController::class, 'matricula'])->name('cursos.matricula');
+
+    Route::get('/secretaria/professor', [SecretariaController::class, 'showProfessores'])->name('secretaria.professores');
+    Route::get('/professor/{id}/edit', [ProfessorController::class, 'edit']);
+    Route::put('/professor/{professor}/update', [ProfessorController::class, 'update'])->name('professor.updating');
+
     Route::resources([
         'aluno' => AlunoController::class,
         'professor' => ProfessorController::class,

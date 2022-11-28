@@ -101,4 +101,7 @@ class SecretariaController extends Controller
     public function showAlunos(){
         return view('secretaria.alunos');
     }
+    public function showProfessores(){
+        return view('secretaria.professores');
+    }
 }
