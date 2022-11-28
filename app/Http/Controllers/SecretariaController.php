@@ -97,6 +97,28 @@ class SecretariaController extends Controller
         $cursos = Curso::all();
         return view('secretaria.cursos', compact('cursos'));
     }
+
+    public function insert(){
+        $cursos = Curso::all();
+        $alunos = Aluno::all();
+        return view('secretaria.insertCurso', compact('alunos', 'cursos'));
+    }
+
+    public function alunoInCurso(Request $request){
+
+        $aluno = Aluno::find($request->aluno);
+        $cursos = $aluno->cursos;
+        foreach ($cursos as $c) {
+            if ($c->id == $request->curso) {
+                return back()->with("error", "Aluno já matriculado no curso");
+            }
+        }
+        $aluno = Aluno::find($request->aluno);
+        $aluno->cursos()->attach($request->curso);
+        $aluno->cursos()->increment('matriculas');
+
+        return back()->with("status", "Matrícula realizada com sucesso!");
+    }
 //     /*------------------------------------------
 //     --------------------------------------------
 //     CRUD Alunos

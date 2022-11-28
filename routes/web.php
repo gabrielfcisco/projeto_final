@@ -108,6 +108,9 @@ Route::middleware(['auth', 'user-acess:secretaria'])->group(function () {
     Route::get('/professor/{id}/edit', [ProfessorController::class, 'edit']);
     Route::put('/professor/{professor}/update', [ProfessorController::class, 'update'])->name('professor.updating');
 
+    Route::get('secretaria/aluno/insert', [SecretariaController::class, 'insert'])->name('aluno.insert');
+    Route::post('secretaria/alunoincurso', [SecretariaController::class, 'alunoInCurso'])->name('alunoincurso');
+
     Route::resources([
         'aluno' => AlunoController::class,
         'professor' => ProfessorController::class,
